@@ -35,10 +35,15 @@
 				<% for (Board b : boards) { %>
 				<tr style="background-color:white;height:25px">
 					<td style="width:50px"><%= b.getBoardNo() %></td>
-					<td style="width:300px">
-						<a href='detail.action?boardno=<%= b.getBoardNo() %>&pageno=<%= request.getAttribute("pageno")%>'>
-						<%= b.getTitle() %>
-						</a>
+					<td style="width:300px; text-align: left; padding-left:5px">
+						<% if( b.isDeleted()){ %>
+							<span style="color: lightgray;" onclick="alert('삭제된 글입니다');"><%= b.getTitle() %>(삭제된 글)</span>
+						<% } else { %>
+							<a href='detail.action?boardno=<%= b.getBoardNo() %>&pageno=<%= request.getAttribute("pageno")%>'>
+							<%= b.getTitle() %>
+							</a>
+						<% } %>
+						
 					</td>
 					<td style="width:150px"><%= b.getWriter() %></td>
 					<td style="width:120px"><%= b.getRegDate() %></td>

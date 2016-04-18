@@ -1,3 +1,4 @@
+<%@page import="com.demoweb.dto.Member"%>
 <%@page import="com.demoweb.dto.Board"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" session="true"%>
@@ -12,8 +13,15 @@
 	<link rel="Stylesheet" href="/demoweb/styles/default.css" />
 	<link rel="Stylesheet" href="/demoweb/styles/input2.css" />
 	
-
-</head>
+	 <script type="text/javascript">
+		        function doDelete(boardNo, pageNo){
+		        	yes = confirm(boardNo + '번 글을 삭제할까요 ?');
+		        	if(yes){
+		        		location.href = 'delete.action?boardno=' + boardNo + '&pageno='+ pageNo;
+		        	}
+		        }
+	 </script>	
+</head>[]
 <body>
 
 	<div id="pageContainer">
@@ -51,10 +59,13 @@
 		            </tr>
 		        </table>
 		       
-		        <div class="buttons">		        	
-		        	
-		        	<a href="#">삭제</a>
-		        	<a href='list.action?pageno=<%= request.getAttribute("pageno") %>'>목록보기</a>
+		        <div class="buttons">		        
+		         	<% Member member = (Member)session.getAttribute("loginuser"); %>
+		         	<% if (member.getMemberId().equals(board.getWriter() )) {%>
+		         		<a href='javaScript:doDelete(<%=board.getBoardNo() %>, <%=request.getAttribute("pageno") %>)'>삭제</a>&nbsp;&nbsp;
+		         		<a href='edit.action?boardno=<%= board.getBoardNo()%>&pageno=<%=request.getAttribute("pageno")%>'>수정</a>&nbsp;&nbsp;
+		        	<% } %>
+                 		<a href="list.action?pageno=<%= request.getAttribute("pageno")%>">목록보기</a>
 		        </div>
 		    </div>
 		</div>

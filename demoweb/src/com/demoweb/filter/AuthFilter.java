@@ -50,21 +50,14 @@ public class AuthFilter implements Filter {
 				return;
 			}
 			
-		} else if(uri.contains("/upload/")){
+		} else if(uri.contains("/upload/") || uri.contains("/board/")){
 			
 			if(member == null || !member.getUserType().equals("admin") ){
 				resp.sendRedirect("/demoweb/account/loginform.action");
 				return;
 			}
 			
-		} else if(uri.contains("/board/")){
-			
-			if(member == null || !member.getUserType().equals("admin") ){
-				resp.sendRedirect("/demoweb/account/loginform.action");
-				return;
-			}
-			
-		}
+		} 
 		
 		chain.doFilter(request, response);
 	}
