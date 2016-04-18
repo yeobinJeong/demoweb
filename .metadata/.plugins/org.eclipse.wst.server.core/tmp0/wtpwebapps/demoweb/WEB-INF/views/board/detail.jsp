@@ -54,7 +54,7 @@
 		        <div class="buttons">		        	
 		        	
 		        	<a href="#">삭제</a>
-		        	<a href="list.action">목록보기</a>
+		        	<a href='list.action?pageno=<%= request.getAttribute("pageno") %>'>목록보기</a>
 		        </div>
 		    </div>
 		</div>

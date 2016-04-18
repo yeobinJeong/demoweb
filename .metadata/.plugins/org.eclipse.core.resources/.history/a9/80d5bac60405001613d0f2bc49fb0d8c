@@ -32,16 +32,7 @@ public class BoardDetailServlet extends HttpServlet {
 			return;
 		}
 		//문자열을 숫자로 변경
-		int iBoardNo = Integer.parseInt(boardNo);
-		
-		// 요청된 페이지 번호 읽기 (없으면 1로 설정)
-		String pageNo = req.getParameter("pageno");
-		int currentPage = 1; // 현재 페이지 번호
-		if (pageNo != null && pageNo.length() > 0) {
-			currentPage = Integer.parseInt(pageNo);
-		}
-		req.setAttribute("pageno", pageNo);
-		
+		int iBoardNo = Integer.parseInt(boardNo);		
 		//2. 자료 번호로 자료 정보 조회 (DAO)
 		BoardDao dao = new BoardDao();
 		Board board = dao.selectBoardByBoardNo(iBoardNo);		

@@ -40,7 +40,6 @@ public class BoardDetailServlet extends HttpServlet {
 		if (pageNo != null && pageNo.length() > 0) {
 			currentPage = Integer.parseInt(pageNo);
 		}
-		req.setAttribute("pageno", pageNo);
 		
 		//2. 자료 번호로 자료 정보 조회 (DAO)
 		BoardDao dao = new BoardDao();
