@@ -1,0 +1,69 @@
+14/04/16 17:23:26 INFO  James.Mailet: RemoteAddrNotInNetwork: Authorized addresses: [127.0.0.1/255.255.255.255]
+14/04/16 17:23:26 INFO  James.Mailet: RemoteDelivery: maxRetries is larger than total number of attempts specified. Increasing last delayTime with 19 attempts 
+14/04/16 17:23:26 INFO  James.Mailet: RemoteDelivery: Delay of 21600000 msecs is now attempted: 20 times
+14/04/16 17:38:27 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-gmail.com to host gmail-smtp-in.l.google.com. at 64.233.187.26 for addresses [jmam0513@gmail.com]
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Mail (Mail1460623087089-0-to-gmail.com) sent successfully to gmail-smtp-in.l.google.com. at 64.233.187.26 for [jmam0513@gmail.com]
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623087089-0-to-naver.com: 
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623087089-0-to-naver.com into outgoing after 0 retries
+14/04/16 17:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-google.com to host aspmx.l.google.com. at 64.233.187.27 for addresses [jmam0513@google.com]
+14/04/16 17:38:30 INFO  James.Mailet: RemoteDelivery: Permanent exception delivering mail (Mail1460623087089-0-to-google.com: 
+14/04/16 17:38:30 INFO  James.Mailet: ToRepository: Storing mail Mail1460623087089-0-to-google.com-!850086 in file://var/mail/address-error/
+14/04/16 17:41:53 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-gmail.com to host gmail-smtp-in.l.google.com. at 64.233.187.26 for addresses [jmam0513@gmail.com]
+14/04/16 17:41:55 INFO  James.Mailet: RemoteDelivery: Mail (Mail1460623288180-1-to-gmail.com) sent successfully to gmail-smtp-in.l.google.com. at 64.233.187.26 for [jmam0513@gmail.com]
+14/04/16 17:41:55 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-google.com to host aspmx.l.google.com. at 74.125.23.27 for addresses [jmam0513@google.com]
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Permanent exception delivering mail (Mail1460623288180-1-to-google.com: 
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 17:41:57 INFO  James.Mailet: ToRepository: Storing mail Mail1460623288180-1-to-google.com-!710921 in file://var/mail/address-error/
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623288180-1-to-naver.com: 
+14/04/16 17:41:57 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623288180-1-to-naver.com into outgoing after 0 retries
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623087089-0-to-naver.com: 
+14/04/16 17:43:29 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623087089-0-to-naver.com into outgoing after 1 retries
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623288180-1-to-naver.com: 
+14/04/16 17:46:57 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623288180-1-to-naver.com into outgoing after 1 retries
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623087089-0-to-naver.com: 
+14/04/16 17:53:29 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623087089-0-to-naver.com into outgoing after 2 retries
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623288180-1-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623288180-1-to-naver.com: 
+14/04/16 17:56:57 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623288180-1-to-naver.com into outgoing after 2 retries
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx4.naver.com. at 125.209.238.137 for addresses [jmam0513@naver.com]
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.137, port: 25, response: 421
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx1.naver.com. at 125.209.238.100 for addresses [jmam0513@naver.com]
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.238.100, port: 25, response: 421
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Attempting delivery of Mail1460623087089-0-to-naver.com to host mx3.naver.com. at 125.209.222.14 for addresses [jmam0513@naver.com]
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Could not connect to SMTP host: 125.209.222.14, port: 25, response: 421
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Temporary exception delivering mail (Mail1460623087089-0-to-naver.com: 
+14/04/16 18:38:29 INFO  James.Mailet: RemoteDelivery: Storing message Mail1460623087089-0-to-naver.com into outgoing after 3 retries

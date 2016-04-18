@@ -1,0 +1,7 @@
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service uses default thread group.
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service is running on: stu30-PC
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service handler hello name is: stu30-PC
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service handler connection timeout is: 120000
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service connection backlog is: 5
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service will allow a maximum of 30 connections.
+14/04/16 17:23:26 INFO  nntpserver: NNTP Service started plain:119

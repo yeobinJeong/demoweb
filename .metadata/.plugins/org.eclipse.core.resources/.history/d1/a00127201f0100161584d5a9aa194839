@@ -1,0 +1,52 @@
+package com.demoweb.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.demoweb.dao.MemberDao;
+import com.demoweb.dto.Member;
+
+@WebServlet(value = "/dot/input.action")
+public class DotInput extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		
+		
+		String[] dotData = new String[1600];
+		for(int i=0; i<40; i++){
+			for(int j=0; j<40; j++){
+				String index = String.valueOf((i*40)+j);
+				dotData[(i*40)+j] = req.getParameter(index);
+				
+			}
+		}
+		
+		for(int i=0; i<40; i++){
+			for(int j=0; j<40; j++){
+				String index = String.valueOf((i*40)+j);
+				if(dotData[(i*40)+j].equals("1")){
+					System.out.println((i*40)+j);
+				}
+				
+			}
+		}
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/dot/input.jsp");
+		dispatcher.forward(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);// 처리 내용이 같으므로 doGet으로 전달
+	}
+
+}

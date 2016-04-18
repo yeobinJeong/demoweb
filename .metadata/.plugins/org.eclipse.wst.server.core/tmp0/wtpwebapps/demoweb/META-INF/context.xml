@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+
+
+
+
+<!-- context.xml web application 설정을 작성하는 파일 -->
+<context path="/demoweb" reloadable="true">
+	<Resource name="jdbc/demoweb" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+              username="demoweb" password="oracle" maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
+</context>

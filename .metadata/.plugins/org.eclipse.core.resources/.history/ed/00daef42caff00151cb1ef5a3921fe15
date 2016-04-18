@@ -1,0 +1,82 @@
+package com.demoweb.servlet;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/upload/list.action")
+public class UploadListServlet extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+		throws ServletException, IOException {
+		
+		//1. 로그인 여부 확인 (로그인 하지 않은 사용자는 로그인 화면으로 redirect))
+		if (req.getSession().getAttribute("loginuser") == null) {
+			resp.sendRedirect(
+				"/demoweb/account/loginform.action?returnurl=" + req.getRequestURI());
+			return;
+		}
+		
+		//2. 목록 데이터 조회
+		ServletContext application = req.getServletContext();
+		String path = application.getRealPath("WEB-INF/upload/");
+		//디렉터리 또는 파일을 관리하는 객체를 만들기.
+		File file = new File(path);
+		String[] files = null;
+		
+		if(!file.exists()){
+			System.out.println("디렉터리 없음");
+			return;
+		}
+		else{
+			if(file.isDirectory()){
+				//지정된 디렉터리의 파일 목록을 반환 
+				files=file.list();
+			
+				
+			}else{
+				System.out.println("디렉터리 아님");
+				return;
+			}
+			
+			
+		}
+		
+		//3. 조회된 데이터를 jsp에서 사용하도록 Request에 저장
+		
+		//4. 목록 보기 jsp로 forward
+		RequestDispatcher dispatcher = 
+			req.getRequestDispatcher("/WEB-INF/views/upload/uploadlist.jsp");
+		dispatcher.forward(req, resp);
+		
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+		throws ServletException, IOException {
+		
+		req.setCharacterEncoding("utf-8");
+		
+		doGet(req, resp);
+	}
+	
+}
+
+
+
+
+
+

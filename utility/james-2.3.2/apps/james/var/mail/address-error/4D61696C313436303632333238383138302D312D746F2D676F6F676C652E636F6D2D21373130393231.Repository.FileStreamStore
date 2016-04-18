@@ -1,0 +1,69 @@
+Date: Thu, 14 Apr 2016 17:41:57 +0900 (KST)
+From: postmaster@localhost
+To: god@localhost
+Message-ID: <760686828.3.1460623317453.JavaMail.stu30@stu30-PC>
+In-Reply-To: <1761255129.0.1460623288156.JavaMail.stu30@stu30-PC>
+Subject: =?MS949?Q?Re:=C1=A6=B9=DF_?=
+MIME-Version: 1.0
+Content-Type: multipart/report; 
+	boundary="----=_Part_2_1846062999.1460623317442"; 
+	report-type=delivery-status
+
+------=_Part_2_1846062999.1460623317442
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Hi. This is the James mail server at stu30-PC.
+I'm afraid I wasn't able to deliver your message to the following addresses.
+This is a permanent error; I've given up. Sorry it didn't work out.  Below
+I include the list of recipients and the reason why I was unable to deliver
+your message.
+
+Failed recipient(s):
+jmam0513@google.com
+
+Error message:
+550-5.1.1 The email account that you tried to reach does not exist. Please try
+550-5.1.1 double-checking the recipient's email address for typos or
+550-5.1.1 unnecessary spaces. Learn more at
+550 5.1.1  https://support.google.com/mail/answer/6596 gd10si5649001igc.60 - gsmtp
+
+
+------=_Part_2_1846062999.1460623317442
+Content-Type: message/delivery-status; name=status.dat
+Content-Transfer-Encoding: 7bit
+Content-Description: Delivery Status Notification
+Content-Disposition: attachment; filename=status.dat
+
+Reporting-MTA: dns; stu30-PC
+Received-From-MTA: dns; 127.0.0.1
+
+Final-Recipient: rfc822; jmam0513@google.com
+Action: failed
+Status: 5.2.0
+Diagnostic-Code: X-James; 550-5.1.1 The email account that you tried to reach does not exist. Please try
+550-5.1.1 double-checking the recipient's email address for typos or
+550-5.1.1 unnecessary spaces. Learn more at
+550 5.1.1  https://support.google.com/mail/answer/6596 gd10si5649001igc.60 - gsmtp
+Last-Attempt-Date: Thu, 14 Apr 2016 17:41:28 +0900 (KST)
+
+------=_Part_2_1846062999.1460623317442
+Content-Type: message/rfc822; name=""
+Content-Disposition: Attachment; filename=""
+
+Received: from 127.0.0.1 ([127.0.0.1])
+          by stu30-PC (JAMES SMTP Server 2.3.2) with SMTP ID 87;
+          Thu, 14 Apr 2016 17:41:28 +0900 (KST)
+Date: Thu, 14 Apr 2016 17:41:28 +0900 (KST)
+From: god
+To: jmam0513@google.com
+Cc: jmam0513@naver.com
+Message-ID: <1761255129.0.1460623288156.JavaMail.stu30@stu30-PC>
+Subject: =?utf-8?B?7KCc67CcIA==?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+6rCA7KO87IS47JqUIOuplOydvOuLmA==
+
+------=_Part_2_1846062999.1460623317442--

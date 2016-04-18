@@ -1,0 +1,14 @@
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service uses default thread group.
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service is running on: stu30-PC
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service handler hello name is: stu30-PC
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service handler connection timeout is: 60000
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service connection backlog is: 5
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service will allow a maximum of 30 connections.
+14/04/16 17:16:32 INFO  remotemanager: Remote Manager Service started plain:4555
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service uses default thread group.
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service is running on: stu30-PC
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service handler hello name is: stu30-PC
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service handler connection timeout is: 60000
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service connection backlog is: 5
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service will allow a maximum of 30 connections.
+14/04/16 17:16:46 INFO  remotemanager: Remote Manager Service started plain:4555

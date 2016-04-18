@@ -1,0 +1,10 @@
+14/04/16 16:54:23 INFO  mailstore: JamesMailStore init...
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.AvalonMailRepository to handle file protocol requests for repositories of type MAIL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.AvalonSpoolRepository to handle file protocol requests for repositories of type SPOOL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.JDBCMailRepository to handle db protocol requests for repositories of type MAIL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.JDBCSpoolRepository to handle db protocol requests for repositories of type SPOOL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.JDBCMailRepository to handle dbfile protocol requests for repositories of type MAIL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.JDBCSpoolRepository to handle dbfile protocol requests for repositories of type SPOOL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.MBoxMailRepository to handle mbox protocol requests for repositories of type MAIL
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.filepair.File_Persistent_Object_Repository to handle file protocol requests for repositories of type OBJECT
+14/04/16 16:54:23 INFO  mailstore: Registering Repository instance of class org.apache.james.mailrepository.filepair.File_Persistent_Stream_Repository to handle file protocol requests for repositories of type STREAM
