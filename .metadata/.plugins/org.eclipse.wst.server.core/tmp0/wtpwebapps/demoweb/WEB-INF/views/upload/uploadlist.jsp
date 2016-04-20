@@ -14,10 +14,10 @@
 
 	<div id="pageContainer">
 	
-	
+	<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
 	
 		<div style="padding-top:25px;text-align:center">
-			[ <a href="/demoweb/upload/writeform.action">자료 등록</a> ]
+			[ <a href="/demoweb/upload/write.action">자료 등록</a> ]
 			<br /><br />
 			
 			

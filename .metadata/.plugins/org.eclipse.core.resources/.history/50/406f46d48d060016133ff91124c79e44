@@ -1,0 +1,20 @@
+package com.demoweb.dto;
+
+import java.util.Date;
+
+public class Schedule {
+
+	
+	int idxNo;
+	Date sDate;
+	String sClass;
+	String sSubject;
+	String sImageName;
+	int sTime;
+	String sWriter;
+	String sContent;
+	
+	
+	
+	
+}

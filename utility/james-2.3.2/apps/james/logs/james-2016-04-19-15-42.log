@@ -1,0 +1,9 @@
+19/04/16 15:42:15 INFO  James: JAMES init...
+19/04/16 15:42:15 INFO  James: Local host is: stu30-PC
+19/04/16 15:42:15 INFO  James: Handling mail for: localhost
+19/04/16 15:42:15 INFO  James: Handling mail for: stu30-pc
+19/04/16 15:42:15 INFO  James: Handling mail for: 0:0:0:0:0:0:0:1
+19/04/16 15:42:15 INFO  James: Handling mail for: 127.0.0.1
+19/04/16 15:42:15 INFO  James: Local users repository opened
+19/04/16 15:42:15 INFO  James: Private Repository LocalInbox opened
+19/04/16 15:42:15 INFO  James: JAMES ...init end

@@ -38,9 +38,10 @@
             <div>
                 <ul>
                     <li><a href="/demoweb/member/list.action">사용자관리</a></li>
-					<li><a href="/demoweb/mail/sendmailform.action">메일보내기</a></li>
+					<li><a href="/demoweb/mail/sendmail.action">메일보내기</a></li>
 					<li><a href="/demoweb/upload/list.action">자료실</a></li>
 					<li><a href="/demoweb/board/list.action">게시판</a></li>
+					<li><a href="/demoweb/schedule/register.action">Scheduler</a></li>
 					<li><a href="/demoweb/dot/input.action">DotInput</a></li>
 					<li><a href="/demoweb/dot/display.action">DotDisplay</a></li>
                 </ul>

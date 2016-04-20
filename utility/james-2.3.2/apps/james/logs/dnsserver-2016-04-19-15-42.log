@@ -1,0 +1,6 @@
+19/04/16 15:42:15 INFO  dnsserver: Autodiscovery is enabled - trying to discover your system's DNS Servers
+19/04/16 15:42:15 INFO  dnsserver: Adding autodiscovered server 211.63.64.11
+19/04/16 15:42:15 INFO  dnsserver: Adding autodiscovered server 211.63.64.10
+19/04/16 15:42:15 INFO  dnsserver: DNS Server is: 211.63.64.11
+19/04/16 15:42:15 INFO  dnsserver: DNS Server is: 211.63.64.10
+19/04/16 15:42:15 INFO  dnsserver: DNS Server is: 211.63.64.11

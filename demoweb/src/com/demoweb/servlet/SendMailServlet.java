@@ -7,6 +7,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,24 @@ import com.demoweb.dto.Member;
 public class SendMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		//아래 인증 코드는 필터로 이동
+//		HttpSession session = req.getSession();
+//		if (session.getAttribute("loginuser") == null) {
+//			resp.sendRedirect(
+//				"/demoweb/account/loginform.action?returnurl=" + 
+//				req.getRequestURI());
+//			return;
+//		}
+		
+		RequestDispatcher d = 
+			req.getRequestDispatcher("/WEB-INF/views/mail/sendmailform.jsp");
+		d.forward(req, resp);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//1. 요청 데이터 읽기
 		String to = request.getParameter("to");
@@ -51,12 +69,8 @@ public class SendMailServlet extends HttpServlet {
 		}
 		
 		//4. 메일보내기 페이지로 이동
-		response.sendRedirect("/demoweb/mail/sendmailform.action");
+		/*response.sendRedirect("/WEB-INF/views/mail/sendmailform.jsp");*/
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-		doGet(request, response);
-	}
 
 }

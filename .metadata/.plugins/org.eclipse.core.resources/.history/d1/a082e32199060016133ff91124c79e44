@@ -1,0 +1,10 @@
+package com.exampleweb.dto;
+
+public class Person {
+	
+	private int num;
+	private String name;
+	private String email;
+	
+
+}

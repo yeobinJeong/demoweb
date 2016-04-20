@@ -1,0 +1,41 @@
+package com.exampleweb.servlet;
+
+import java.io.IOException;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.exampleweb.dto.Person;
+
+@WebServlet(value = "/eltest.action")
+public class ELTestServlet extends HttpServlet {
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
+		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setAttribute("data1","Request Data" + new Date());
+		req.getSession().setAttribute("data2", "Session Data");
+		req.getServletContext().setAttribute("data3", "Application Data");
+		
+	
+		
+		Person person = new Person();
+		
+		
+		person.setNum(1);
+		person.setName("john");
+		person.setEmail("google");
+		
+		req.setAttribute("person", person);
+		
+		req.getRequestDispatcher("/jspdemo/10.el-result.jsp").forward(req,resp);
+	}
+	
+}

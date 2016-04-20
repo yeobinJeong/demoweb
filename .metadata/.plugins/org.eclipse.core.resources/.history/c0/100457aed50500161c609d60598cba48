@@ -1,0 +1,190 @@
+<%@page import="com.demoweb.dto.BoardComment"%>
+<%@page import="com.demoweb.dto.Member"%>
+<%@page import="com.demoweb.dto.Board"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" session="true"%>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>글쓰기</title>
+	<link rel="Stylesheet" href="/demoweb/styles/default.css" />
+	<link rel="Stylesheet" href="/demoweb/styles/input2.css" />
+	
+	 <script type="text/javascript">
+		        function doDelete(boardNo, pageNo){
+		        	yes = confirm(boardNo + '번 글을 삭제할까요 ?');
+		        	if(yes){
+		        		location.href = 'delete.action?boardno=' + boardNo + '&pageno='+ pageNo;
+		        	}
+		        }
+	 </script>	
+</head>
+<body>
+
+	<div id="pageContainer">
+	
+		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
+		
+		<div style="padding-top:25px;text-align:center">
+		<div id="inputcontent">
+		    <div id="inputmain">
+		        <div class="inputsubtitle">게시판 글 내용</div>
+		        <% Board board = (Board)request.getAttribute("board"); %>       
+		        <table>
+		            <tr>
+		                <th>제목</th>
+		                <td><%= board.getTitle() %></td>
+		            </tr>
+		            <tr>
+		                <th>작성자</th>
+		                <td><%= board.getWriter() %></td>
+		            </tr>
+		            <tr>
+		                <th>작성일</th>
+		                <td><%= board.getRegDate() %></td>
+		            </tr>
+					<tr>
+		                <th>조회수</th>
+		                <td><%= board.getReadCount() %></td>
+		            </tr>
+		            
+		            <tr>
+		                <th>내용</th>
+		                <td style="height:200px;vertical-align:top">		                    
+		                    <%= board.getContent().replace("\r\n", "<br>").replace(" ", "&nbsp;") %>		                    
+		                </td>
+		            </tr>
+		        </table>
+		        <% Member member = (Member)session.getAttribute("loginuser"); %>
+		        
+		       
+				
+				
+				
+				
+				
+		<%--여기서부터 버튼 --%>
+		        <div class="buttons">		        
+		         	
+		         	<% if (member.getMemberId().equals(board.getWriter() )) {%>
+		         		<a href='javaScript:doDelete(<%=board.getBoardNo() %>, <%=request.getAttribute("pageno") %>)'>삭제</a>&nbsp;&nbsp;
+		         		<a href='edit.action?boardno=<%= board.getBoardNo()%>&pageno=<%=request.getAttribute("pageno")%>'>수정</a>&nbsp;&nbsp;
+		        	<% } else { %>
+		        		<%-- 작성자가 자신의 글에 댓글을 쓸 수 없다면 이곳에 --%> 
+		        	<% } %>
+		        		<a href='replyform.action?borardno=<%=board.getBoardNo()%>&pageno=<%=request.getAttribute("pageno")%>'>답글쓰기</a><br /><br />
+                 		<a href='list.action?pageno=<%= request.getAttribute("pageno")%>'>목록보기</a>
+		        </div>
+		    </div>
+		</div>
+		
+		 
+				<br /><br />
+		
+				<form id="commentform" 
+					action="writecomment.action" method="post">
+					<input type="hidden" name="boardno"
+						value="<%= board.getBoardNo() %>" />
+					<input type="hidden" name="pageno"
+						value="<%= request.getAttribute("pageno") %>" />
+					<table style="width:600px;border:solid 1px;margin:0 auto">
+			            <tr>
+			                <td style="width:550px">	                	
+			                    <textarea name="content" 
+			                    	style="width:550px" rows="3"></textarea>
+			                </td>
+			                <td style="width:50px;vertical-align:middle">
+			                	<a href="javascript:document.getElementById('commentform').submit();"
+			                		style="text-decoration:none">
+			                		댓글<br />등록
+			                	</a>
+			                </td>
+			            </tr>                    
+			        </table>
+		        </form>        
+		        
+		        <hr align="center" style="width:600px;" />	
+		        
+		        <% if (board.getComments().size() == 0) { %>
+		        <h4 id="nodata" style="text-align:center">
+		            작성된 댓글이 없습니다.
+		        </h4>
+		        <% } else { %>        
+				<!-- comment 표시 영역 -->
+				<script type="text/javascript">
+				function toggleCommentStatus(commentNo, edit){
+					var v = document.getElementById("commentview" + commnetNo);
+					var e = document.getElementById("commentedit" + commnetNo);
+					
+						v.style.display = edit ? 'none' : 'block';
+						e.style.display = edit ? 'block': 'none';
+					
+				}
+				</script>
+				<table style="width:600px;border:solid 1px;margin:0 auto">
+				<% for(BoardComment bcomment : board.getComments()) { %>
+		        	<tr>
+		        		<td style="text-align:left;margin:5px;border-bottom: solid 1px">
+		        		
+		        		<div id='commentview<%= bcomment.getCommentNo() %>'>
+		                    <%= bcomment.getWriter() %> &nbsp;&nbsp;
+		                    [ <%= bcomment.getRegDate() %> ]
+		                    <br /><br />
+		                    <span>
+		                        <%= bcomment.getContent().replace("\r\n", "<br />") %>
+		                    </span>
+		                    <br /><br />
+		                    <%
+		                    String display = "";
+		                    if (member.getMemberId().equals(bcomment.getWriter())) {
+		                    	display = "block";//화면에 표시하세요
+		                    } else {
+		                    	display = "none";//화면에 표시하지 마세요
+		                    }
+		                    %>
+		                    <div style="display: <%= display %>">
+		                    	<a href="javascript:toggleCommentStatus(<%= bcomment.getCommentNo() %>, true);">편집</a>
+		                    	&nbsp;
+		                    	<a href="javascript:deleteComment(<%= bcomment.getCommentNo() %>, <%= board.getBoardNo() %>, <%= request.getAttribute("pageno") %>)">삭제</a>
+		                    </div>
+		                </div>
+		                
+		                <div id='commentedit<%= bcomment.getCommentNo() %>' style="display: none">
+							<%= bcomment.getWriter() %>&nbsp;&nbsp; 
+							[<%= bcomment.getRegDate() %>] 
+							<br /><br />
+							<form id="commenteditform<%= bcomment.getCommentNo() %>" 
+								action="updatecomment.action" method="post">
+								<input type="hidden" name="boardno"
+									value="<%= board.getBoardNo() %>" />
+								<input type="hidden" name="pageno"
+									value="<%= request.getAttribute("pageno") %>" />
+								<input type="hidden" name="commentno"
+									value="<%= bcomment.getCommentNo() %>" />
+								<textarea name="content" style="width: 600px" rows="3" 
+									maxlength="200"><%= bcomment.getContent() %></textarea>
+							</form>
+							<br />
+							<div>
+								<a href="javascript:document.getElementById('commenteditform<%= bcomment.getCommentNo() %>').submit();">수정</a> 
+								&nbsp; 
+								<a href="javascript:toggleCommentStatus(<%= bcomment.getCommentNo() %>, false);">취소</a>
+							</div>
+						</div>
+			
+						</td>
+		        	</tr>
+		        <% } %>
+		        </table>		
+				<% } %>	
+		
+		
+	</div>
+	</div>
+
+</body>
+</html>

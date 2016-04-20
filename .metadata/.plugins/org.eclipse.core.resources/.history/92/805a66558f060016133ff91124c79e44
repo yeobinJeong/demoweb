@@ -1,0 +1,61 @@
+package com.demoweb.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.demoweb.dto.Schedule;
+
+public class ScheduleDao {
+	
+	String dsn = "oracle";
+	
+	public void insertSchedule(Schedule schedule){
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int newBoardNo = -1;
+		
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int newBoardNo = -1;
+		
+		try {
+			conn = ConnectionHelper.getConnection(dsn);
+			
+			StringBuilder sql = new StringBuilder(256);
+			sql.append("INSERT INTO schedule ")
+			   .append("(boardno, title, writer, content, groupno, step) ")
+			   .append("VALUES ")
+			   .append("(board_sequence.nextVal, ?, ?, ?, board_sequence.currVal, 1)");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriter());
+			pstmt.setString(3, board.getContent());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			//새로 삽입된 글 번호 조회
+			pstmt = 
+				conn.prepareStatement("SELECT board_sequence.currVal FROM dual");
+			rs = pstmt.executeQuery();
+			rs.next();
+			newBoardNo = rs.getInt(1);
+			
+		} catch (Exception ex) {
+			try { conn.rollback(); } catch (Exception ex2) {}
+			ex.printStackTrace();
+		} finally {
+			//6. 연결닫기
+			try { rs.close(); } catch (Exception ex) {}
+			try { pstmt.close(); } catch (Exception ex) {}			
+			try { conn.close(); } catch (Exception ex) {}
+		}
+	}
+
+}

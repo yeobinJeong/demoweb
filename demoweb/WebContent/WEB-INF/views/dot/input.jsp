@@ -29,7 +29,40 @@
 	}
 	
 	
+   function gridRound(event){
+		
+		dotClean();
+		
+		var dotindex = 0;
+		for(var i=0; i<1599; i++){
+			 
+			
+		    var dotX = parseInt(i%40);
+		    var dotY = parseInt(i/40);
+		    
+		    
+			if( parseInt((dotX-5)*(dotX-5) + (dotY-5)*(dotY-5)) == parseInt(25) ){
+				
+				
+				varindex[dotindex] = dotY*40 + dotX;
+				alert(dotindex);
+				
+				dotindex++;
+			}
+			
 	
+		}
+			
+			/* alert("rot x: " + resultX + "rot y:" + resultY); */
+		
+		
+		for(var i=0; i<varindex.length; i++) {
+			var index = varindex[i];
+			
+			dot[index].style.backgroundColor = "black";
+	    }
+	
+	}
 	
 	function dotDisplay(event){
 		

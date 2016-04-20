@@ -16,8 +16,6 @@
 <fullyQualifiedTypeName name="com.demoweb.dao.UploadDao"/>
 <fullyQualifiedTypeName name="javax.servlet.Filter"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
-<fullyQualifiedTypeName name="com.demoweb.dto.Member"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="com.oracle.jrockit.jfr.RequestableEvent"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
@@ -29,4 +27,11 @@
 <fullyQualifiedTypeName name="java.nio.Buffer"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="com.demoweb.dao.BoardDao"/>
+<fullyQualifiedTypeName name="javax.print.attribute.ResolutionSyntax"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="com.demoweb.dto.Member"/>
+<fullyQualifiedTypeName name="com.demoweb.servlet.BoardReplyFormServlet2"/>
+<fullyQualifiedTypeName name="com.demoweb.dto.BoardComment"/>
 </qualifiedTypeNameHistroy>

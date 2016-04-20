@@ -28,13 +28,6 @@ public class MemberRegisterFormServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");		
 		PrintWriter writer = resp.getWriter();
 		
-//		HttpSession session = req.getSession();
-//		Member member = (Member)session.getAttribute("loginuser");
-//		if(session.getAttribute("loginuser") == null || !member.getUserType().equals("admin")){
-//			resp.sendRedirect("/demoweb/account/loginform.action");
-//			return;
-//		}
-		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("/WEB-INF/views/member/registerform2.jsp");
 				dispatcher.forward(req, resp);

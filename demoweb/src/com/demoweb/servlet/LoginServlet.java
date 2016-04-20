@@ -29,17 +29,32 @@ public class LoginServlet extends HttpServlet {
 		MemberDao dao = new MemberDao();
 		Member member = dao.selectMemberByIdAndPasswd(id, passwd);
 		
+		String returnURL = req.getParameter("returnurl");
+		
+		
 		//if exist id = login
 		//else if not exist id = login fail
 		if (member != null){
 			HttpSession session = req.getSession();
 			session.setAttribute("loginuser", member);
 			
-			resp.sendRedirect("/demoweb/index.jsp");
+			if(returnURL==null || returnURL.length()==0){
+				resp.sendRedirect("/demoweb/home.action");
+			}else{
+				resp.sendRedirect(returnURL);
+			}
+			
+			/*resp.sendRedirect("/demoweb/index.jsp");*/
 		
 		}else {
 		     System.out.println("실패");
-		     resp.sendRedirect("/demoweb/account/loginform.action");
+		     
+		     
+		     if(returnURL==null || returnURL.length()==0){
+		    	 	resp.sendRedirect("/demoweb/account/loginform.action");
+				}else{
+					resp.sendRedirect("/demoweb/account/loginform.action?returnurl=" + returnURL);
+				}
 		}
 		
 		

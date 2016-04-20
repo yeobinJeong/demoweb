@@ -9,12 +9,15 @@
 	<script type="text/javascript">
 	<% String[] dotData = (String[])request.getAttribute("index"); %>
 	<% String[] dotColor = (String[])request.getAttribute("color");%>
+	
 	dot = document.getElementsByClassName("dot");
 	var timer = null;
 	var varindex= [];
+	var varcolor= [];
 	var count = 1;
+	
 	function dotMove(event){
-		<% String[] dotIndex = new String[dotData.length];%>
+		<% String[] dotIndex = new String[dotData.length]; %>
 		
 			if(count == 1){
 		
@@ -26,7 +29,6 @@
 					temp2 -= 2;
 					String temp;
 					temp = String.valueOf(temp2);
-					
 					%>
 					
 					varindex[<%=i%>] = <%=temp%> 
@@ -59,8 +61,7 @@
 				var index = varindex[<%=i%>];
 				
 				
-				<%-- var color = eval("<%=dotColor[i]%>"); --%>
-				dot[index].style.backgroundColor = "rgb(102, 51, 0)";
+				dot[index].style.backgroundColor = "<%=dotColor[i]%>";
 				
 			<%}%>
 			
@@ -69,17 +70,111 @@
 		
 	}
 	
+	function dotClick(event){
+		
+		var target = event.target;
+		
+		for(var k=0; k<dot.length; k++){
+			
+			if( target == dot[parseInt(k)] ){
+				
+				var x = parseInt(k%40);
+				var y = parseInt(k/40);
+				
+				alert(k);
+				
+				if(x<20){
+					for(var i=0; i<varindex.length; i++) {
+						varindex[i] -= 2; 
+					}
+					
+					dotClean();
+					dotDisplay();
+				} else {
+					
+					for(var i=0; i<varindex.length; i++) {
+						varindex[i] += 2; 
+					}
+								
+					dotClean();
+					dotDisplay();
+					
+				}
+				
+				
+			}
+			
+		}
+		
+	}
 	
+	function dotRotate(event){
+		
+		<% for(int i=0; i<dotData.length; i++) {%>
+		varindex[<%=i%>] += 2;
+	    var dotX = parseInt(varindex[<%=i%>]%40);
+	    var dotY = parseInt(varindex[<%=i%>]/40);
+	
+		var rotX = parseInt( dotX*Math.cos(90) - dotY*Math.sin(90));
+		var rotY = parseInt( dotX*Math.sin(90) + dotY*Math.cos(90));
+	
+		var resultX = rotX;
+		var resultY = rotY;
+		
+		varindex[<%=i%>] = rotY*40 + rotX;
+		<%}%>
+	
+	
+		
+		dotClean();
+		dotDisplay();
+		
+	}
+	
+	function gridRound(event){
+		
+		dotClean();
+		
+		var dotindex = 0;
+		for(var i=0; i<1599; i++){
+			 
+			
+		    var dotX = parseInt(i%40);
+		    var dotY = parseInt(i/40);
+		    
+		    
+			if( parseInt((dotX-5)*(dotX-5) + (dotY-5)*(dotY-5)) == parseInt(25) ){
+				
+				
+				varindex[dotindex] = dotY*40 + dotX;
+				alert(dotindex);
+				
+				dotindex++;
+			}
+			
+	
+		}
+			
+			/* alert("rot x: " + resultX + "rot y:" + resultY); */
+		
+		
+		for(var i=0; i<varindex.length; i++) {
+			var index = varindex[i];
+			
+			dot[index].style.backgroundColor = "black";
+	    }
+	
+	}
 	
 	
 	function dotDisplay(event){
 		
-		<% for(int i=0; i<dotData.length; i++) {%>
-			<%-- var index = <%= Integer.parseInt(dotIndex[i]) %> --%>
-			var index = varindex[<%=i%>];
+		 for(var i=0; i<varindex.length; i++) {
+			var index = varindex[i];
 			/* alert(varindex[0]); */
-			<%-- dot[index].style.backgroundColor = <%=dotColor[Integer.parseInt(dotData[i])]%>; --%>
-		<%}%>
+			/* dot[index].style.backgroundColor = varcolor[index]; */
+			dot[index].style.backgroundColor = varcolor[i];
+		}
 				
 	}
 	
@@ -90,9 +185,26 @@
 			dot[i].style.backgroundColor = "white";
 		}
 	}
+	
 	function doStart(event){
+			 <% for(int i=0; i<dotData.length; i++) {%>
+				
+				<%				
+				int temp2 = Integer.parseInt(dotData[i]);
+				temp2 -= 2;
+				String temp;
+				temp = String.valueOf(temp2);
+				%>
+				
+				varindex[<%=i%>] = <%=temp2%>;
+				varcolor[<%=i%>] = "<%=dotColor[i]%>";
+				
+			<%}%>
+			
+			dotDisplay(); 
+		
 
-			timer =  window.setTimeout("dotMove()", 500);
+			/* timer =  window.setTimeout("dotMove()", 500); */
 	}
 	
 	function doStop(event){
@@ -107,8 +219,11 @@
 	
 	window.onload = function(event){
 	
-			
+		for(var i=0; i<dot.length; i++){
+			dot[i].addEventListener("click", dotClick);
+		}
 		doStart();
+		
 		
 		
 		

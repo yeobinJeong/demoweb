@@ -1,0 +1,54 @@
+package com.demoweb.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.demoweb.dto.Schedule;
+
+public class ScheduleDao {
+	
+	String dsn = "oracle";
+	
+	public void insertSchedule(Schedule schedule){
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ConnectionHelper.getConnection(dsn);
+			
+			StringBuilder sql = new StringBuilder(256);
+			sql.append("INSERT INTO schedule ")
+			   .append("(idxno, sclass, sdate, ssubject, stime, scontent, swriter, simgname) ")
+			   .append("VALUES ")
+			   .append("(schedule_sequence.nextVal, ?, ?, ?, ?, ?, ?, ?)");
+			
+			java.sql.Date sqlDate = (java.sql.Date)schedule.getsDate();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, schedule.getsClass());
+			pstmt.setDate(2, sqlDate);
+			pstmt.setString(3, schedule.getsSubject());
+			pstmt.setInt(4, schedule.getsTime());
+			pstmt.setString(5, schedule.getsContent());
+			pstmt.setString(6, schedule.getsWriter());
+			pstmt.setString(7, schedule.getsImageName());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			
+		} catch (Exception ex) {
+			try { conn.rollback(); } catch (Exception ex2) {}
+			ex.printStackTrace();
+		} finally {
+			//6. 연결닫기
+			try { rs.close(); } catch (Exception ex) {}
+			try { pstmt.close(); } catch (Exception ex) {}			
+			try { conn.close(); } catch (Exception ex) {}
+		}
+	}
+
+}

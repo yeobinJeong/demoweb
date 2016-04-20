@@ -22,8 +22,15 @@
 		        <div class="inputsubtitle">로그인정보</div>
 		        
 		        <form action="login.action" method="post">
+		        <% String returnURL = request.getParameter("returnurl");
+		         
+		        if(returnURL == null) {
+		        	returnURL = "";
+		        	
+		        }
+		        %>
 
-				
+				<input type="hidden" name="returnurl" value="<%= returnURL %>" />
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>

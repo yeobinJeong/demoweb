@@ -1,0 +1,13 @@
+package com.demoweb.dto;
+
+import java.util.Date;
+
+public class Schedule {
+
+	
+	int idxNo;
+	Date Sdate;
+	String SSubject;
+	
+	
+}

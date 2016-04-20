@@ -1,0 +1,5 @@
+package com.demoweb.dto;
+
+public class Schedule {
+
+}

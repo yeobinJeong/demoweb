@@ -31,12 +31,22 @@
 					<th style="width:120px">작성일</th>
 					<th style="width:80px">조회수</th>
 				</tr>
-				<% List<Board> boards = (List<Board>)request.getAttribute("boards"); %>
+				<% List<Board> boards= (List<Board>)request.getAttribute("boards");%>
 				<% for (Board b : boards) { %>
 				<tr style="background-color:white;height:25px">
 					<td style="width:50px"><%= b.getBoardNo() %></td>
 					<td style="width:300px; text-align: left; padding-left:5px">
+						
+						<%for (int i=0;i<b.getDepth();i++){ %>
+			                  &nbsp;&nbsp;
+			                  <% }%>
+			                  <% if(b.getDepth()>0) {%>
+			                  <img src = "/demoweb/image/re.gif"/>
+			            <% }  %>
+						
 						<% if( b.isDeleted()){ %>
+							
+			                
 							<span style="color: lightgray;" onclick="alert('삭제된 글입니다');"><%= b.getTitle() %>(삭제된 글)</span>
 						<% } else { %>
 							<a href='detail.action?boardno=<%= b.getBoardNo() %>&pageno=<%= request.getAttribute("pageno")%>'>

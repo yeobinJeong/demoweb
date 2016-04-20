@@ -46,14 +46,14 @@ public class AuthFilter implements Filter {
 		if(uri.contains("/member/")){
 			
 			if(member ==null || !member.getUserType().equals("admin") ){
-				resp.sendRedirect("/demoweb/account/loginform.action");
+				resp.sendRedirect("/demoweb/account/loginform.action?returnurl=" + uri);
 				return;
 			}
 			
-		} else if(uri.contains("/upload/") || uri.contains("/board/")){
+		} else if(uri.contains("/upload/") || uri.contains("/board/") || uri.contains("/mail/") || uri.contains("/schedule/")){
 			
 			if(member == null || !member.getUserType().equals("admin") ){
-				resp.sendRedirect("/demoweb/account/loginform.action");
+				resp.sendRedirect("/demoweb/account/loginform.action?returnurl=" +uri);
 				return;
 			}
 			

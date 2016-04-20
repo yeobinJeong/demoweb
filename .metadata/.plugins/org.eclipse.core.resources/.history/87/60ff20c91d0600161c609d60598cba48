@@ -1,0 +1,100 @@
+<%@page import="com.demoweb.dto.Member"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>사용자등록</title>
+	<link rel="Stylesheet" href="/demoweb/styles/default.css" />
+	<link rel="Stylesheet" href="/demoweb/styles/input.css" />
+	
+</head>
+<body>
+
+	<% Member member = (Member)session.getAttribute("loginuser"); %>
+        	  	
+	<div id="pageContainer">
+		<jsp:include page="/WEB-INF/views/include/header.jsp"/>
+		
+		
+		<div id="inputcontent" style="float: left; margin-left: 30px">
+			<br /><br />
+		    <div id="inputmain">
+		        <div class="inputsubtitle">일정등록</div>
+
+		        <form id="registerform" action="register.action" method="post" enctype="multipart/form-data"><!-- 상대경로표시 -->
+		        <table>
+		            <tr>
+		                <th>반</th>
+		                <td>
+		                    <input type="text" id="sclass" name="sclass" style="width:280px" />
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>작성자</th>
+		                <td>
+		                	<%= member.getMemberId() %>
+		                	<input type="hidden" name="writter" value="<%= member.getMemberId()%>" />
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>과목명</th>
+		                <td>
+		                	<input type="text" id="ssubject" name="ssubject" style="width:280px" />
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>교시</th>
+		                <td>
+		                   
+							<select id="stime" name="stime">
+								<option>1교시</option>
+								<option>2교시</option>
+								<option>3교시</option>
+								<option>4교시</option>
+								<option>5교시</option>
+								<option>6교시</option>
+							</select>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>내용</th>
+		                <td>
+		                	<textarea 
+		                    	name="content" cols="50" rows="15"></textarea>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>날짜</th>
+		                <td>
+		                	<input type="date" id="sdate" name="sdate" ></input>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>이미지</th>
+		                <td>
+		                	<input type="file" name="attach" style="width: 280px; height:20px" />
+		                </td>
+		            </tr>		            		            
+		        </table>
+		        <div class="buttons">
+		        	<input type="submit" value="등록" style="height:25px" />
+		        	<input type="button" value="취소" style="height:25px"
+		        		onclick="location.href='list.action';" />
+
+		        </div>
+		        </form>
+		    </div>
+		</div>   	<!-- 인풋 container  -->
+		
+		
+	
+	
+	
+	</div>
+
+</body>
+</html>

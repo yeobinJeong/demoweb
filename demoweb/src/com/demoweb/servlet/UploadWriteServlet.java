@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,14 +27,14 @@ import com.demoweb.dto.UploadFile;
 public class UploadWriteServlet extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
 		
 //		req.setCharacterEncoding("utf-8");
 
 		//파일 업로드를 포함하는지 확인
 		if (!ServletFileUpload.isMultipartContent(req)) {
-			resp.sendRedirect("writeform.action.jsp");
+			resp.sendRedirect("writeform.action");
 			return;
 		}
 
@@ -133,12 +134,19 @@ public class UploadWriteServlet extends HttpServlet {
 		
 	}
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
 		
 //		req.setCharacterEncoding("utf-8");
 		
-		doGet(req, resp);
+		
+			
+			RequestDispatcher dispatcher = 
+				req.getRequestDispatcher("/WEB-INF/views/upload/uploadwriteform.jsp");
+			dispatcher.forward(req, resp);
+			
+		
+		/*doGet(req, resp);*/
 	}
 	
 }
