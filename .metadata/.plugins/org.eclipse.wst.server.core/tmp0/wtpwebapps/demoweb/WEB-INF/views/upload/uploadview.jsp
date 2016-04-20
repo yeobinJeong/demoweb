@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -48,13 +50,18 @@
 		            <tr>
 		                <th>첨부자료</th>
 		                <td>
-		                	<% for (UploadFile file : upload.getFiles()) { %>
-		                	<a href="download.action?uploadfileno=<%= file.getUploadFileNo() %>">
-		                		<%= file.getUserFileName() %>
+		                	
+		                	<c:forEach var="file" items="${ upload.files }" varStatus="status">
+		                	<div>
+		                	${ status.index +1 }.&nbsp;
+		                	<a href="download.action?uploadfileno=${ file.uploadFileNo}">
+		                		${file.userFileName }
 		                	</a>
-		                	&nbsp;[<%= file.getDownloadCount() %>]
+		                	&nbsp;[${file.downloadCount }]
 		                	<br />
-		                	<% } %>
+		                	</div>
+		                	</c:forEach>
+		                	
 		                </td>
 		            </tr>
 		            <tr>

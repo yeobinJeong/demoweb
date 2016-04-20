@@ -37,28 +37,28 @@
 			<br /><br />
 		    <div id="inputmain">
 		        <div class="inputsubtitle">회원기본정보</div>
-		        <% Member member = (Member)request.getAttribute("member"); %>
+		        
 				
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>
-		                <td><%= member.getMemberId() %></td>
+		                <td>${member.memberId }</td>
 		            </tr>
 		            <tr>
 		                <th>이메일</th>
-		                <td><%= member.getEmail() %></td>
+		                <td>${member.email }</td>
 		            </tr>
 		            <tr>
 		                <th>사용자구분</th>
-		                <td><%= member.getUserType() %></td>
+		                <td>${member.userType }</td>
 		            </tr>		            
 		            <tr>
 		                <th>활성화여부</th>
-		                <td><%= member.isActive() %></td>
+		                <td>${member.active }</td>
 		            </tr>
 		            <tr>
 		                <th>등록일자</th>
-		                <td><%= member.getRegDate() %></td>
+		                <td>${member.regDate }</td>
 		            </tr>		            		            
 		        </table>
 		        <div class="buttons">

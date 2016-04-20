@@ -14,59 +14,31 @@
 	var timer = null;
 	var varindex= [];
 	var varcolor= [];
-	var count = 1;
+	
 	
 	function dotMove(event){
-		<% String[] dotIndex = new String[dotData.length]; %>
 		
-			if(count == 1){
 		
-				<% for(int i=0; i<dotData.length; i++) {%>
+			
 				
 				
-					<%				
-					int temp2 = Integer.parseInt(dotData[i]);
-					temp2 -= 2;
-					String temp;
-					temp = String.valueOf(temp2);
-					%>
-					
-					varindex[<%=i%>] = <%=temp%> 
-					
+			
+
+			for(var i=0; i<2; i++)
+			{
+				timer =  window.setTimeout("doDelay()", 2000);
+				moveLeft();
 				
-				<%}%>
-				count += 1;
-			} else if (count < 5){
-				// 처음이 아닌경우 이전 픽셀 값에서 -2 하는 구문
-				<% for(int i=0; i<dotData.length; i++) {%>
-					varindex[<%=i%>] = varindex[<%=i%>] -2; 
-				<%}%>
-				count += 1;
-				
-			} else {
-				
-				<% for(int i=0; i<dotData.length; i++) {%>
-					varindex[<%=i%>] = varindex[<%=i%>] +2; 
-				<%}%>
-				
-				count += 1;
-				if(count == 9){
-					count =2;
-				}
+			
 			}
-			
-			dotClean();
-			
-			<% for(int i=0; i<dotData.length; i++) {%>
-				var index = varindex[<%=i%>];
-				
-				
-				dot[index].style.backgroundColor = "<%=dotColor[i]%>";
-				
-			<%}%>
+			doStop();
 			
 		
-			timer =  window.setTimeout("dotMove()", 500);
+	}
+	
+	function doDelay(){
+		
+		timer =  window.setTimeout("doDelay()", 1000);
 		
 	}
 	
@@ -81,24 +53,10 @@
 				var x = parseInt(k%40);
 				var y = parseInt(k/40);
 				
-				alert(k);
-				
 				if(x<20){
-					for(var i=0; i<varindex.length; i++) {
-						varindex[i] -= 2; 
-					}
-					
-					dotClean();
-					dotDisplay();
+					moveLeft();
 				} else {
-					
-					for(var i=0; i<varindex.length; i++) {
-						varindex[i] += 2; 
-					}
-								
-					dotClean();
-					dotDisplay();
-					
+					moveRight();
 				}
 				
 				
@@ -108,6 +66,28 @@
 		
 	}
 	
+	function moveLeft(event){
+		
+		for(var i=0; i<varindex.length; i++) {
+			varindex[i] -= 2; 
+		}
+		
+		dotClean();
+		dotDisplay();
+		
+	}
+	
+	function moveRight(event){
+		
+		for(var i=0; i<varindex.length; i++) {
+			varindex[i] += 2; 
+		}
+					
+		dotClean();
+		dotDisplay();
+		
+	
+	}
 	function dotRotate(event){
 		
 		<% for(int i=0; i<dotData.length; i++) {%>
@@ -202,7 +182,7 @@
 			<%}%>
 			
 			dotDisplay(); 
-		
+			timer =  window.setTimeout("dotMove()", 500); 
 
 			/* timer =  window.setTimeout("dotMove()", 500); */
 	}

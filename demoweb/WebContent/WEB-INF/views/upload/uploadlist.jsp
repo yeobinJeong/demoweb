@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <html>
@@ -28,36 +29,39 @@
 					<th style="width:400px">제목</th>
 					<th style="width:150px;text-align:center">작성일</th>
 				</tr>
-				<%
+				<%-- <%
 					List<Upload> uploads = (List<Upload>)request.getAttribute("uploads");
-				%>
+				%> --%>
 
 				
-				<%
+				<%-- <%
 					if (uploads.size() == 0) {
-				%>
-
-				<%
-					} else {
-				%>
-					<% for(Upload u : uploads){ %>
+				%> --%>
+				<c:choose>
+					<c:when test="${empty uploads }">
+					</c:when>
+					
+					<c:otherwise>
+				
+					<c:forEach var="u" items="${ uploads }">
 				<tr>
 					<td>
-						<%= u.getUploadNo() %>
+						${ u.uploadNo }
 					</td>
 					<td>
-						<a href="detail.action?uploadno=<%= u.getUploadNo() %>">
-							<%= u.getTitle() %>
+						<a href="detail.action?uploadno=${u.uploadNo }">
+							${u.title }
 						</a>
 					</td>
 					<td>
-						<%= u.getRegDate() %>
+						${u.regDate }
 					</td>
 				
 				</tr>
-					<% } %>
-				<%} %>
-
+					</c:forEach>
+					
+				</c:otherwise>
+				</c:choose>
 			</table>
 			<br /><br /><br /><br />
 			

@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <html>
@@ -14,26 +14,32 @@
 <body>
 
 	<% String bg = request.getParameter("background"); %>
-	<% if (bg==null || bg.length()==0) {%>
+	<c:if test="${ empty param['background'] }">
 		<div id="header">
-	<%} else { %>
-		<div id="header" style='background-color: <%= bg %>'>		 
-	<%} %>
+	</c:if>
+	<c:if test="${ not empty param['background'] }">
+		<div id="header" style="background-color: ${param['background'] }">		 
+	
     	
             <div class="title">
                 <a href="/demoweb/">DEMO WEBSITE</a>
             </div>
             <div class="links">
-            <% Member member = (Member)session.getAttribute("loginuser");%> 
-			<% if( member != null) { %>
-			<%= member.getMemberId() %>
-				<a href="/demoweb/account/logout.action">로그아웃</a>
-			<% }else { %>
-            	<a href="/demoweb/account/loginform.action">로그인</a>
-                <a href="#">등록</a>
-            <%} %>
+            	<c:choose>
+            		<c:when test="${ loginuser != null }">
+            			${ loginuser.memberId } 
+						<a href="/demoweb/account/logout.action">로그아웃</a>
+					</c:when>
+				    <c:otherwise>
+            			<a href="/demoweb/account/loginform.action">로그인</a>
+            			<a href="#">등록</a>
+            	 	</c:otherwise> 
+            	</c:choose>    
+            
             </div>
-        </div>        
+        
+      </c:if>
+      </div>        
         <div id="menu">
             <div>
                 <ul>

@@ -21,10 +21,11 @@
 	application data : ${ applicationScope.data3 }<br/>
 	
 	<hr/>
-		request data : ${ persons.get(3).name }<br/> <!-- getName() -->
-		request data : ${ persons[3].name }<br/> <!-- getName() -->
-		request data : ${ personht["key3"].name }<br/> <!-- getName() -->
-	<%-- request data : ${ persons.getName() }<br/> --%>
+	request data : ${ persons.get(3).name }<br/> <!-- getName() -->
+	request data : ${ persons[3].name }<br/> <!-- getName() -->
+	request data : ${ personht["key3"].name }<br/> <!-- getName() -->
+		
+	
 	
 </body>
 </html>
