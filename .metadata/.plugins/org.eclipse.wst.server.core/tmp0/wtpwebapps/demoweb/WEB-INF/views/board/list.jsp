@@ -2,6 +2,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" %>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
        
 <!DOCTYPE html>
 
@@ -31,38 +35,48 @@
 					<th style="width:120px">작성일</th>
 					<th style="width:80px">조회수</th>
 				</tr>
-				<% List<Board> boards= (List<Board>)request.getAttribute("boards");%>
-				<% for (Board b : boards) { %>
-				<tr style="background-color:white;height:25px">
-					<td style="width:50px"><%= b.getBoardNo() %></td>
-					<td style="width:300px; text-align: left; padding-left:5px">
-						
-						<%for (int i=0;i<b.getDepth();i++){ %>
-			                  &nbsp;&nbsp;
-			                  <% }%>
-			                  <% if(b.getDepth()>0) {%>
-			                  <img src = "/demoweb/image/re.gif"/>
-			            <% }  %>
-						
-						<% if( b.isDeleted()){ %>
-							
-			                
-							<span style="color: lightgray;" onclick="alert('삭제된 글입니다');"><%= b.getTitle() %>(삭제된 글)</span>
-						<% } else { %>
-							<a href='detail.action?boardno=<%= b.getBoardNo() %>&pageno=<%= request.getAttribute("pageno")%>'>
-							<%= b.getTitle() %>
-							</a>
-						<% } %>
-						
-					</td>
-					<td style="width:150px"><%= b.getWriter() %></td>
-					<td style="width:120px"><%= b.getRegDate() %></td>
-					<td style="width:80px"><%= b.getReadCount() %></td>
-				</tr>
-				<% } %>
 				
+				<c:if test=" ${ empty boards }">
+					
+				</c:if>
+				<c:if test="${ not empty boards }">
+					<c:forEach var="b" items="${boards}">
+						${ b.depth }
+					<tr style="background-color:white;height:25px">
+						<td style="width:50px">${b.boardNo}</td>
+						<td style="width:300px; text-align: left; padding-left:5px">
+							
+							<c:if test="${  b.depth != 0}">
+							       <img src = "/demoweb/image/re.gif"/>
+							       			       
+							       <c:forEach var="i" begin="1" end="${b.depth}" step="1">
+					                  &nbsp;&nbsp;
+					                
+					      		   </c:forEach>
+				          	</c:if>
+				          	 
+							<c:choose>
+								<c:when test="${ b.deleted == true}">		                
+									<span style="color: lightgray;" onclick="alert('삭제된 글입니다');">${ b.title }(삭제된 글)</span>
+								</c:when>
+								<c:otherwise>
+									<a href='detail.action?boardno=${ b.boardNo }&pageno=${ pageno }'>
+									${ b.title }
+									</a>
+								</c:otherwise>
+							</c:choose>
+								
+							
+						</td>
+						<td style="width:150px">${ b.writer }</td>
+						<td style="width:120px">${ b.regDate }</td>
+						<td style="width:80px">${ b.readCount }</td>
+					</tr>
+					
+					</c:forEach>
+				</c:if>
 			</table>
-			
+		
 			<br /><br />
 			<%-- 아래는 페이지 번호 출력 --%>
 			<%= request.getAttribute("pager").toString() %>

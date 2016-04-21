@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>Ajax Demo</title>
+	<script type="text/javascript">
+	
+		var proxy;//ºñµ¿±â ¿äÃ»À» ¼öÇàÇÒ °´Ã¼ ÂüÁ¶
+		function doRequest() {
+			//proxy = new XMLHttpRequest();//°´Ã¼ »ý¼º
+			proxy = getXmlHttpRequest();
+			if (proxy == null) {
+				alert('¿äÃ» ½ÇÆÐ');
+				return;
+			}
+			proxy.open(
+				"GET",	//¿äÃ» ¸Þ¼­µå (OR POST) 
+				"handler2.jsp", //¿äÃ» ¼ö½ÅÀÚ
+				true);	//ºñµ¿±â ¿©ºÎ
+			//¿äÃ»¿¡ ´ëÇÑ ÀÀ´äÀÌ µµÂøÇßÀ» ¶§ È£ÃâÇÒ ÇÔ¼ö ÁöÁ¤
+			proxy.onreadystatechange = processResult;
+			proxy.send(null);//¿äÃ» Àü¼Û - nullÀº get ¹æ½ÄÀÏ¶§ »ç¿ë			
+		}		
+		function processResult() {
+			//1:¿äÃ»Àü, 2:¿äÃ»ÈÄ, 3:ÀÀ´ä¼ö½Å½ÃÀÛ, 4:ÀÀ´ä¼ö½ÅÁ¾·á
+			if (proxy.readyState == 4) {
+				if (proxy.status == 200) {//ÀÀ´äÄÚµåÈ®ÀÎ (Á¤»óÀÀ´ä)
+					var content = proxy.responseText;//ÀÀ´ä ³»¿ë
+					var div = document.createElement("div");//div ¿ä¼Ò »ý¼º
+					div.style.border = 'solid 1px red';
+					div.style.padding = "10px";
+					div.style.marginTop = "5px";
+					div.innerHTML = content;//ÀÀ´ä °á°ú¸¦ ¸¸µç div¿¡ Ãß°¡
+					var resultDiv = document.getElementById("result");
+					resultDiv.appendChild(div);//result div ÇÏÀ§ Ç×¸ñÀ¸·Î Ãß°¡
+				} else {
+					alert('¿À·ù : ' + proxy.status)
+				}
+			}
+		}
+	
+		
+		function getXmlHttpRequest() {
+			//ºê¶ó¿ìÀú ³»Àå °´Ã¼·Î Á¦°øµÇ´Â °æ¿ì
+			if (window.XMLHttpRequest) return new XMLHttpRequest();
+			
+			//ActiveX ¹æ½ÄÀ¸·Î Á¦°øµÇ´Â °æ¿ì (IE ÇÏÀ§ ¹öÀü)
+			var versions = [
+				"MSXML2.XMLHttp.6.0",
+				"MSXML2.XMLHttp.5.0",
+				"MSXML2.XMLHttp.4.0",
+				"MSXML2.XMLHttp.3.0",
+				"MSXML2.XMLHttp",
+				"Microsoft.XMLHttp"
+			];
+			for (var i = 0; i < versions.length; i++) {				
+				try {
+					temp = new ActiveXObject(versions[i]);
+					return temp;
+				} catch (e) {}				
+			}
+			return null;
+		}
+	</script>
+</head>
+<body>
+	<br /><br /><br />
+	<div style="padding:10px;margin-left: 30px;font-size:13pt">
+		1. <a href="handler1.jsp">µ¿±â ¹æ½Ä ¿äÃ» / ÀüÃ¼ È­¸é °»½Å</a><br /><br />
+		2. <a href="javascript:doRequest();">ºñµ¿±â ¹æ½Ä ¿äÃ» / ºÎºÐ È­¸é °»½Å</a>
+	</div>
+	<div id="result" 
+		style="padding:10px;margin-left: 30px;font-size:13pt">
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

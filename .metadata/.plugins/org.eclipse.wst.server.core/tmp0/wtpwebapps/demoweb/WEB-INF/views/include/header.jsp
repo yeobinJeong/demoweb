@@ -16,30 +16,33 @@
 	<% String bg = request.getParameter("background"); %>
 	<c:if test="${ empty param['background'] }">
 		<div id="header">
+		
 	</c:if>
 	<c:if test="${ not empty param['background'] }">
-		<div id="header" style="background-color: ${param['background'] }">		 
+		<div id="header" style="background-color: ${param['background']}">		 
 	
     	
-            <div class="title">
-                <a href="/demoweb/">DEMO WEBSITE</a>
-            </div>
-            <div class="links">
-            	<c:choose>
-            		<c:when test="${ loginuser != null }">
-            			${ loginuser.memberId } 
-						<a href="/demoweb/account/logout.action">로그아웃</a>
-					</c:when>
-				    <c:otherwise>
-            			<a href="/demoweb/account/loginform.action">로그인</a>
-            			<a href="#">등록</a>
-            	 	</c:otherwise> 
-            	</c:choose>    
             
-            </div>
         
       </c:if>
-      </div>        
+	      <div class="title">
+	                <a href="/demoweb/">DEMO WEBSITE</a>
+	            </div>
+	            <div class="links">
+	            	<c:choose>
+	            		<c:when test="${ loginuser != null }">
+	            			${ loginuser.memberId } 
+							<a href="/demoweb/account/logout.action">로그아웃</a>
+						</c:when>
+					    <c:otherwise>
+	            			<a href="/demoweb/account/loginform.action">로그인</a>
+	            			<a href="#">등록</a>
+	            	 	</c:otherwise> 
+	            	</c:choose>    
+	            
+	       </div>
+       </div>
+             
         <div id="menu">
             <div>
                 <ul>

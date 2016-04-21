@@ -44,6 +44,7 @@ public class BoardWriteServlet extends HttpServlet {
 		board.setTitle(title);
 		board.setWriter(memberId);
 		board.setContent(content);
+		System.out.println(content);
 		BoardDao dao = new BoardDao();
 		dao.insertBoard(board);			
 		

@@ -2,6 +2,7 @@ package com.demoweb.servlet;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -22,7 +23,33 @@ public class DotDisplay extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		FileInputStream istream = new FileInputStream("/c:/dot/test.txt");
+		
+		String[] index = fileInitIndex("test");
+		String[] color = fileInitColor("test");
+		
+		req.setAttribute("index", index);
+		req.setAttribute("color", color);
+
+		String[] index2 = fileInitIndex("evolution");
+		String[] color2 = fileInitColor("evolution");
+		
+		req.setAttribute("evolindex", index2);
+		req.setAttribute("evolcolor", color2);
+		
+		String[] index3 = fileInitIndex("boomb");
+		String[] color3 = fileInitColor("boomb");
+		
+		req.setAttribute("boomindex", index3);
+		req.setAttribute("boomcolor", color3);
+		System.out.println("initOk");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/dot/display.jsp");
+		dispatcher.forward(req, resp);
+
+	}
+
+	protected String[] fileInitIndex(String name) throws IOException {
+
+		FileInputStream istream = new FileInputStream("/c:/dot/"+name+".txt");
 		InputStreamReader reader = new InputStreamReader(istream);
 		BufferedReader breader = new BufferedReader(reader);
 		String inputData = new String();
@@ -39,29 +66,58 @@ public class DotDisplay extends HttpServlet {
 		String[] splitString = inputData.split("%");
 		String[] index = new String[splitString.length];
 		String[] color = new String[splitString.length];
-		for(String str : splitString){
-		System.out.println(str);}
-		 for(int i =0; i<splitString.length; i++){
+		
+		for (int i = 0; i < splitString.length; i++) {
 			String[] temp = splitString[i].split(":");
-			if(temp.length >1){
+			if (temp.length > 1) {
 				index[i] = temp[0];
 				color[i] = temp[1];
-				System.out.println("index : " + index[i]);
-				System.out.println("color : " + color[i]);
+			
 			}
-		 	
-		 }
+
+		}
 
 		breader.close();
 		reader.close();
 		istream.close();
 
-		req.setAttribute("index", index);
-		req.setAttribute("color", color);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/dot/display.jsp");
-		dispatcher.forward(req, resp);
+		return index;
+	}
 
+	protected String[] fileInitColor(String name) throws IOException {
+
+		FileInputStream istream = new FileInputStream("/c:/dot/"+name+".txt");
+		InputStreamReader reader = new InputStreamReader(istream);
+		BufferedReader breader = new BufferedReader(reader);
+		String inputData = new String();
+		while (true) {
+			String line = breader.readLine();
+
+			if (line == null) {
+				break;
+			}
+			inputData += line;
+
+		}
+
+		String[] splitString = inputData.split("%");
+		String[] index = new String[splitString.length];
+		String[] color = new String[splitString.length];
+		
+		for (int i = 0; i < splitString.length; i++) {
+			String[] temp = splitString[i].split(":");
+			if (temp.length > 1) {
+				index[i] = temp[0];
+				color[i] = temp[1];
+			}
+
+		}
+
+		breader.close();
+		reader.close();
+		istream.close();
+
+		return color;
 	}
 
 	@Override

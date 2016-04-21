@@ -34,4 +34,14 @@
 <fullyQualifiedTypeName name="com.demoweb.dto.Member"/>
 <fullyQualifiedTypeName name="com.demoweb.servlet.BoardReplyFormServlet2"/>
 <fullyQualifiedTypeName name="com.demoweb.dto.BoardComment"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.demoweb.servlet.SchedulerWriteServlet"/>
+<fullyQualifiedTypeName name="com.demoweb.dto.Schedule"/>
+<fullyQualifiedTypeName name="com.demoweb.dao.ScheduleDao"/>
+<fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
+<fullyQualifiedTypeName name="sun.print.PeekGraphics"/>
+<fullyQualifiedTypeName name="com.exampleweb.dto.Person"/>
+<fullyQualifiedTypeName name="com.exampleweb.servlet.ELTestServlet"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Hashtable"/>
 </qualifiedTypeNameHistroy>

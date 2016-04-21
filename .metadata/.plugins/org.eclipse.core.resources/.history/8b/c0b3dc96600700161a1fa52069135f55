@@ -1,0 +1,56 @@
+<%@page import="com.exampleweb.dto.Person"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+  
+<%--   
+<%
+//요청데이터 읽기 
+//데이터를 DTO객체에 저장
+//1.
+Person person = new Person();
+//2.
+person.setId(request.getParameter("id"));
+person.setPasswd(request.getParameter("passwd"));
+person.setEmail(request.getParameter("email"));
+person.setPhone(request.getParameter("phone"));
+person.setUserType(request.getParameter("userType"));
+if (request.getParameter("active") != null && 
+	request.getParameter("active").length() > 0) {
+	person.setActive(true);
+} else {
+	person.setActive(false);
+}
+
+//....
+%>
+--%>
+
+<%-- Person person = new Person() --%>
+<jsp:useBean id="person" class="com.exampleweb.dto.Person" />
+
+<%-- person.setId(request.getParameter("id")) --%>
+<%-- 
+<jsp:setProperty name="person" property="id" />
+--%>
+
+<%-- 요청 데이터의 각 항목에 해당(이름이 같은)하는 
+	person객체의 모든 property에 데이터 저장 (setXxx 메서드 사용) --%>
+<jsp:setProperty name="person" property="*" />
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%-- ID : person.getId() --%>
+	
+	ID : <jsp:getProperty property="id" name="person" /><br />
+	Passwd : <jsp:getProperty property="passwd" name="person" /><br />
+	Email : <jsp:getProperty property="email" name="person" /><br />
+	Phone : <jsp:getProperty property="phone" name="person" /><br />
+	UserType : <jsp:getProperty property="userType" name="person" /><br />
+	Active : <jsp:getProperty property="active" name="person" /><br />	
+</body>
+</html>

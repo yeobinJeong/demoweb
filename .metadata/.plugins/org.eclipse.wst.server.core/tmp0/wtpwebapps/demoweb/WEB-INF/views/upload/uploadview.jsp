@@ -6,6 +6,10 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%-- 스시, 삼겹, 우삼겹, 감자탕, 떡볶이  --%>
+
 <!DOCTYPE html>
 
 <html>
@@ -66,7 +70,13 @@
 		            </tr>
 		            <tr>
 		                <th>자료설명</th>
-		                <td><%= upload.getContent().replace("\r\n", "<br />") %></td>
+		                <td>
+		                ${ fn:replace(upload.content, "
+", "<br/>")}
+						<c:forEach var="i" begin="1" end="5" step="1" >
+						${ i }
+						</c:forEach>
+		                </td>
 		            </tr>
 		        </table>
 		        <div class="buttons">

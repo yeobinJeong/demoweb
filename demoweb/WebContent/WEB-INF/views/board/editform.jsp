@@ -1,7 +1,9 @@
 <%@page import="com.demoweb.dto.Board"%>
 <%@page import="com.demoweb.dto.Member"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <!DOCTYPE html>
 
@@ -24,26 +26,27 @@
 		        <div class="inputsubtitle">게시판 글 수정</div>
 		        <form action="update.action" 
 		        	  method="post">
-		        <% Board board = (Board)request.getAttribute("board"); %>
-		         <input type='hidden' name="boardno" value="<%= board.getBoardNo() %>" />
+		        <%-- <% Board board = (Board)request.getAttribute("board"); %> --%>
+		         <input type='hidden' name="boardno" value="${ board.boardNo }" />
 		        <table>
 		            <tr>
 		                <th>제목</th>
 		                <td>
-		                    <input type="text" name="title" style="width:480px" value="<%=board.getTitle()%>"/>
+		                    <input type="text" name="title" style="width:480px" value="${ board.title }"/>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>작성자</th>
 		                <td>
-		                	<%= ((Member)session.getAttribute("loginuser")).getMemberId() %>
+		                	<%-- <%= ((Member)session.getAttribute("loginuser")).getMemberId() %> --%>
+		                	${ loginuser.memberId }
 		                </td>
 		            </tr>		            
 		            <tr>
 		                <th>내용</th>
 		                <td>		                    
 		                    <textarea 
-		                    	name="content" cols="76" rows="15" ><%=board.getContent() %></textarea>
+		                    	name="content" cols="76" rows="15" >${ board.content }</textarea>
 		                </td>
 		            </tr>
 		        </table>
@@ -52,7 +55,7 @@
 		        	<a href="javascript:document.forms[0].submit();">글수정</a>
 		        	&nbsp;&nbsp;
 		        	      
-		        	<a href='detail.action?boardno=<%=board.getBoardNo()%>&pageno=<%=request.getAttribute("pageno")%>'>취소 </a>
+		        	<a href='detail.action?boardno=${ board.boardNo }&pageno=${ pageno }'>취소 </a>
 		        </div>
 		        </form>
 		    </div>

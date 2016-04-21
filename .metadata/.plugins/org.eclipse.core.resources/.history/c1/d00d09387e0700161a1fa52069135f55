@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Ajax Demo</title>
+<script type="text/javascript">
+	var proxy;// 비동기 요청을 수행할 객체 참조
+	function doRequest() {
+		proxy = new XMLHttpRequest();//객체 생성
+		proxy.open("GET", "handler2.jsp", true);
+		
+		proxy.open(
+			"GET",
+			"handler2.jsp",
+			true
+		);
+		proxy.onreadystatechange = processResult;
+		proxy.send(null);
+
+	}
+
+	function getXmlHttpRequest() {
+		//브라우저 내장 객체로 제공되는 경우
+		if (window.XMLHttpRequest)
+			return new XMLHttpRequest();
+
+		//ActiveX 방식으로 제공되는 경우 (IE 하위 버전)
+		var versions = [ "MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.5.0",
+				"MSXML2.XMLHttp.4.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp",
+				"Microsoft.XMLHttp" ];
+		for (var i = 0; i < versions.length; i++) {
+			try {
+				temp = new ActiveXObject(versions[i]);
+				return temp;
+			} catch (e) {
+			}
+		}
+		return null;
+	}
+</script>
+</head>
+<body>
+	<br />
+	<br />
+	<br />
+	<div style="padding: 10px; margin-left: 30px; font-size: 13pt">
+		1. <a href="handler1.jsp">동기 방식 요청 / 전체 화면 갱신</a><br />
+		<br /> 2. <a href="javascript:doRequest();">동기 방식 요청 / 부분 화면 갱신</a><br />
+		<br /> 3. <a href="javascript:doRequest2();">비동기 방식 요청 / 부분 화면 갱신</a>
+	</div>
+	<iframe id="proxy" src="" style="width: 0px; height: 0px"> </iframe>
+</body>
+</html>

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 
@@ -22,15 +26,28 @@
 		        <div class="inputsubtitle">로그인정보</div>
 		        
 		        <form action="login.action" method="post">
-		        <% String returnURL = request.getParameter("returnurl");
+		        
+		        
+		        <c:set var= "returnURL" value="${ param.returnurl }"></c:set>
+		         
+		         
+		        <c:if test=" ${ empty returnURL }">
+		        
+		        	<c:set var= "returnURL" value=""></c:set>
+		        
+		        </c:if>
+		        
+		        
+		        
+		        <%-- <% String returnURL = request.getParameter("returnurl");
 		         
 		        if(returnURL == null) {
 		        	returnURL = "";
 		        	
 		        }
-		        %>
+		        %> --%>
 
-				<input type="hidden" name="returnurl" value="<%= returnURL %>" />
+				<input type="hidden" name="returnurl" value="${ returnURL }" />
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>

@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 
 <html>
@@ -9,38 +11,41 @@
 	<script type="text/javascript">
 	<% String[] dotData = (String[])request.getAttribute("index"); %>
 	<% String[] dotColor = (String[])request.getAttribute("color");%>
+	<% String[] evolData = (String[])request.getAttribute("evolindex"); %>
+	<% String[] evolColor = (String[])request.getAttribute("evolcolor");%>
+	<% String[] boombData = (String[])request.getAttribute("boomindex"); %>
+	<% String[] boombColor = (String[])request.getAttribute("boomcolor");%>
+	
 	
 	dot = document.getElementsByClassName("dot");
 	var timer = null;
 	var varindex= [];
 	var varcolor= [];
+	var evolindex= [];
+	var evolcolor= [];
+	var boomindex=[];
+	var boomcolor=[];
+	
+	var count=0;
 	
 	
 	function dotMove(event){
 		
-		
-			
-				
-				
-			
-
-			for(var i=0; i<2; i++)
-			{
-				timer =  window.setTimeout("doDelay()", 2000);
-				moveLeft();
-				
-			
+			if(count < 10 ){
+				moveLeft(varindex);
+				count++;				
+			}else if(9 < count && count < 25 ){
+				moveRight(varindex);
+				count++;
+			}else{
+				count=0;
 			}
-			doStop();
 			
+			timer = setTimeout("dotMove()", 500);
 		
 	}
 	
-	function doDelay(){
-		
-		timer =  window.setTimeout("doDelay()", 1000);
-		
-	}
+	
 	
 	function dotClick(event){
 		
@@ -54,9 +59,12 @@
 				var y = parseInt(k/40);
 				
 				if(x<20){
-					moveLeft();
+					/* moveLeft(); */
+					doStop();
+					count=0;
 				} else {
-					moveRight();
+					dotMove();
+					/* moveRight(); */
 				}
 				
 				
@@ -66,48 +74,80 @@
 		
 	}
 	
-	function moveLeft(event){
+	
+	function moveLeft(targetindex){
 		
-		for(var i=0; i<varindex.length; i++) {
-			varindex[i] -= 2; 
+		for(var i=0; i<targetindex.length; i++) {
+			
+			var x = parseInt(targetindex[i]%40);
+			var y = parseInt(targetindex[i]/40);
+			
+			if( x > 1 ){
+				/* if( i == targetindex.length-1){
+					
+					for(var k=0; k<targetindex.length; k++){
+						targetindex[k] -= 2;
+					}
+				} */
+				targetindex[i] -= 2;
+			}else{
+				continue;
+			}
 		}
 		
-		dotClean();
-		dotDisplay();
+		
+		
 		
 	}
 	
-	function moveRight(event){
+	function moveRight(targetindex){
 		
-		for(var i=0; i<varindex.length; i++) {
-			varindex[i] += 2; 
+		for(var i=0; i<targetindex.length; i++) {
+			
+			var x = parseInt(targetindex[i]%40);
+			var y = parseInt(targetindex[i]/40);
+			
+			if( x < 39 ){
+				/* if( i == targetindex.length-1){
+					
+					for(var k=0; k<targetindex.length; k++){
+						targetindex[k] += 2;
+					}
+				} */
+				targetindex[i] += 2;
+			}else{
+				
+				continue;
+			}
 		}
 					
-		dotClean();
-		dotDisplay();
+		
 		
 	
 	}
-	function dotRotate(event){
+	function dotRotate(targetindex){
 		
-		<% for(int i=0; i<dotData.length; i++) {%>
-		varindex[<%=i%>] += 2;
-	    var dotX = parseInt(varindex[<%=i%>]%40);
-	    var dotY = parseInt(varindex[<%=i%>]/40);
-	
-		var rotX = parseInt( dotX*Math.cos(90) - dotY*Math.sin(90));
-		var rotY = parseInt( dotX*Math.sin(90) + dotY*Math.cos(90));
-	
-		var resultX = rotX;
-		var resultY = rotY;
+		for(var i=0; i<targetindex.length; i++) { 
+			
+		    var dotX = parseInt(targetindex[i]%40);
+		    var dotY = parseInt(targetindex[i]/40);
 		
-		varindex[<%=i%>] = rotY*40 + rotX;
-		<%}%>
-	
+		    
+		    if(dotY < 15){
+				var rotX = parseInt( dotX*Math.cos(90) - dotY*Math.sin(90));
+				var rotY = parseInt( dotX*Math.sin(90) + dotY*Math.cos(90));
+				dotX = rotX;
+				dotY = rotY;
+		    }
+			/* var resultX = rotX;
+			var resultY = rotY; */
+			
+			targetindex[i] = dotY*40 + dotX;
+		}
+		
 	
 		
-		dotClean();
-		dotDisplay();
+		
 		
 	}
 	
@@ -135,25 +175,24 @@
 	
 		}
 			
-			/* alert("rot x: " + resultX + "rot y:" + resultY); */
+			
 		
 		
 		for(var i=0; i<varindex.length; i++) {
 			var index = varindex[i];
-			
+		
 			dot[index].style.backgroundColor = "black";
 	    }
 	
 	}
 	
 	
-	function dotDisplay(event){
+	function dotDisplay(targetindex, targetcolor){
 		
-		 for(var i=0; i<varindex.length; i++) {
-			var index = varindex[i];
-			/* alert(varindex[0]); */
-			/* dot[index].style.backgroundColor = varcolor[index]; */
-			dot[index].style.backgroundColor = varcolor[i];
+		 for(var i=0; i<targetindex.length; i++) {
+			var index = targetindex[i];
+			
+			dot[index].style.backgroundColor = targetcolor[i];
 		}
 				
 	}
@@ -166,14 +205,75 @@
 		}
 	}
 	
+	
+	var evolCnt=0;
+	function evol(event){
+		
+		if(evolCnt == 0)
+		{
+			moveLeft(evolindex);
+			evolCnt++;
+			count++;
+		}else if( evolCnt == 1){
+			moveRight(evolindex);
+			
+			evolCnt--;
+			count++;
+		}
+		
+		dotClean();
+		dotDisplay(evolindex, evolcolor);
+		
+		timer = setTimeout("evol()", 100);
+		
+		if(count == 10){
+			doStop();
+			count =0;
+			evolCnt=0;		
+			
+			dotClean();
+			boomb(boomindex, boomcolor);
+		}
+		
+	}
+	var boomCnt=0;
+	function boomb(event){
+			
+			if(boomCnt == 0)
+			{
+				moveLeft(boomindex);
+				boomCnt++;
+				count++;
+			}else if( boomCnt == 1){
+				moveRight(boomindex);
+				
+				boomCnt--;
+				count++;
+			}
+			
+			dotClean();
+			dotDisplay(boomindex, boomcolor);
+			
+			timer = setTimeout("boomb()", 100);
+			
+			if(count == 10){
+				doStop();
+				count =0;
+				evolCnt=0;		
+				
+				dotClean();
+				dotDisplay(varindex, varcolor);
+			}
+			
+	}
+	
+	
+	
 	function doStart(event){
 			 <% for(int i=0; i<dotData.length; i++) {%>
 				
 				<%				
 				int temp2 = Integer.parseInt(dotData[i]);
-				temp2 -= 2;
-				String temp;
-				temp = String.valueOf(temp2);
 				%>
 				
 				varindex[<%=i%>] = <%=temp2%>;
@@ -181,10 +281,30 @@
 				
 			<%}%>
 			
-			dotDisplay(); 
-			timer =  window.setTimeout("dotMove()", 500); 
+			<% for(int i=0; i<evolData.length; i++){%>
+			
+			<%				
+			int temp2 = Integer.parseInt(evolData[i]);
+			%>
+			
+			evolindex[<%=i%>] = <%=temp2%>;
+			evolcolor[<%=i%>] = "<%=evolColor[i]%>";
+			<% } %>
+			
+			<% for(int i=0; i<boombData.length; i++){%>
+			
+			<%				
+			int temp2 = Integer.parseInt(boombData[i]);
+			%>
+			
+			boomindex[<%=i%>] = <%=temp2%>;
+			boomcolor[<%=i%>] = "<%=boombColor[i]%>";
+			<% } %>
+			
+			dotDisplay(varindex, varcolor);
+			/* dotDisplay(varindex, varcolor); 
+			timer =  window.setTimeout("dotMove()", 500);  */
 
-			/* timer =  window.setTimeout("dotMove()", 500); */
 	}
 	
 	function doStop(event){
@@ -198,15 +318,10 @@
 	
 	
 	window.onload = function(event){
-	
 		for(var i=0; i<dot.length; i++){
 			dot[i].addEventListener("click", dotClick);
 		}
-		doStart();
-		
-		
-		
-		
+		doStart(); 
 	}
 	
 	
@@ -223,35 +338,12 @@
 		</jsp:include>
 		
 		
-		
+	
 		
 		<div align='center' style='margin-top: 30px'>
 			
-			<%-- <table  border='2'>
-				 <%for(int i = 0; i< 40; i++){%>
-					<tr>
-					<% for(int j =0; j< 40; j++){ %>
-						
-						<% boolean active = true;%> 
-						<% String index = String.valueOf((i*40)+j); %>	
-							
-							<% for( int k =0; k<dotData.length; k++) {%>
-									
-								<% if( dotData[k].equals(index) ) { %>
-									<td class='dot' id='<%=(i*40)+j%>' style='width: 9px; height: 9px; background-color: black;'></td>
-									<% active = false;%> 
-									
-								<%} %>
-							<%} %>
-						
-						<%if(active){%>
-							<td class='dot' id='<%=(i*40)+j%>' style='width: 9px; height: 9px; background-color: white;'></td>
-						<% }%>
-						
-					<%}%>
-					</tr>
-				<%}%> 
-			</table> --%>
+			
+			
 			
 			<table  border='2'>
 				 <%for(int i = 0; i< 40; i++){%>
@@ -264,7 +356,8 @@
 					</tr>
 				<%}%> 
 			</table>
-	
+		<a href="javascript:evol();">진화</a> 
+		
 		</div>
 		
 		
