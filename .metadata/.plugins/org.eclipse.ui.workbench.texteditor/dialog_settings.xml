@@ -8,14 +8,14 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="varcolor"/>
+			<item value="`"/>
 			<item value="clear"/>
 			<item value="for"/>
 			<item value="function"/>
 			<item value="dotDisplay()"/>
 			<item value="person"/>
 			<item value="display"/>
-			<item value="toggleCommentStatus"/>
-			<item value="h3"/>
 		</list>
 		<list key="replacehistory">
 			<item value="dotDisplay(varindex, varcolor)"/>
@@ -23,9 +23,9 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="261" key="DIALOG_WIDTH"/>
-		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
-		<item value="380" key="DIALOG_HEIGHT"/>
+		<item value="357" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="513" key="DIALOG_HEIGHT"/>
 		<item value="828" key="DIALOG_X_ORIGIN"/>
 		<item value="246" key="DIALOG_Y_ORIGIN"/>
 	</section>

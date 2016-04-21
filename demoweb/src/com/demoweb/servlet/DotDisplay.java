@@ -41,7 +41,18 @@ public class DotDisplay extends HttpServlet {
 		
 		req.setAttribute("boomindex", index3);
 		req.setAttribute("boomcolor", color3);
+		
+		String[] index4 = fileInitIndex("test2");
+		String[] color4 = fileInitColor("test2");
+		
+		req.setAttribute("afterindex", index4);
+		req.setAttribute("aftercolor", color4);
+		
+		
 		System.out.println("initOk");
+		
+		
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/dot/display.jsp");
 		dispatcher.forward(req, resp);
 

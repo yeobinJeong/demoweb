@@ -15,6 +15,8 @@
 	<% String[] evolColor = (String[])request.getAttribute("evolcolor");%>
 	<% String[] boombData = (String[])request.getAttribute("boomindex"); %>
 	<% String[] boombColor = (String[])request.getAttribute("boomcolor");%>
+	<% String[] afterData = (String[])request.getAttribute("afterindex"); %>
+	<% String[] afterColor = (String[])request.getAttribute("aftercolor");%>
 	
 	
 	dot = document.getElementsByClassName("dot");
@@ -25,6 +27,8 @@
 	var evolcolor= [];
 	var boomindex=[];
 	var boomcolor=[];
+	var afterindex=[];
+	var aftercolor=[];
 	
 	var count=0;
 	
@@ -59,12 +63,14 @@
 				var y = parseInt(k/40);
 				
 				if(x<20){
-					/* moveLeft(); */
-					doStop();
-					count=0;
+					dotClean();
+					moveLeft(varindex);
+					dotDisplay(varindex, varcolor);
+					
 				} else {
-					dotMove();
-					/* moveRight(); */
+					dotClean();
+					moveRight(varindex);
+					dotDisplay(varindex, varcolor);
 				}
 				
 				
@@ -83,15 +89,41 @@
 			var y = parseInt(targetindex[i]/40);
 			
 			if( x > 1 ){
-				/* if( i == targetindex.length-1){
+				if( i == targetindex.length-1){
 					
 					for(var k=0; k<targetindex.length; k++){
 						targetindex[k] -= 2;
 					}
-				} */
-				targetindex[i] -= 2;
+				} 
+				//targetindex[i] -= 2;
 			}else{
-				continue;
+				
+				for(var k=0; k< targetindex.length; k++){
+					
+					var kx = parseInt(targetindex[k]%40);
+					var ky = parseInt(targetindex[k]/40);
+					
+					if(kx <8){
+						for(var a=0; a<8; a++){
+							if((8-kx) == a ){
+								targetindex[k] = ky*40+(8+a);
+							}
+						}
+						
+					}else if (kx == 8){
+						targetindex[k] = ky*40+(8);
+					}else{
+						for(var a=0; a<10; a++){
+							if((kx-8)==a)
+							{
+								targetindex[k] = ky*40+(8-a);	
+							}
+						}
+					}
+					
+					
+				}
+				/* break; */
 			}
 		}
 		
@@ -107,17 +139,17 @@
 			var x = parseInt(targetindex[i]%40);
 			var y = parseInt(targetindex[i]/40);
 			
-			if( x < 39 ){
-				/* if( i == targetindex.length-1){
+			if( x < 38 ){
+				if( i == targetindex.length-1){
 					
 					for(var k=0; k<targetindex.length; k++){
 						targetindex[k] += 2;
 					}
-				} */
-				targetindex[i] += 2;
+				}
+				/* targetindex[i] += 2; */
 			}else{
 				
-				continue;
+				break;
 			}
 		}
 					
@@ -262,7 +294,7 @@
 				evolCnt=0;		
 				
 				dotClean();
-				dotDisplay(varindex, varcolor);
+				dotDisplay(afterindex, aftercolor);
 			}
 			
 	}
@@ -299,6 +331,16 @@
 			
 			boomindex[<%=i%>] = <%=temp2%>;
 			boomcolor[<%=i%>] = "<%=boombColor[i]%>";
+			<% } %>
+			
+			<% for(int i=0; i<afterData.length; i++){%>
+			
+			<%				
+			int temp2 = Integer.parseInt(afterData[i]);
+			%>
+			
+			afterindex[<%=i%>] = <%=temp2%>;
+			aftercolor[<%=i%>] = "<%=afterColor[i]%>";
 			<% } %>
 			
 			dotDisplay(varindex, varcolor);
