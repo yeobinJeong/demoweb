@@ -124,9 +124,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\stu30\Desktop\LAB\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\stu30\Desktop\LAB\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demoweb" path="/demoweb" reloadable="true" source="org.eclipse.jst.jee.server:demoweb">
+      <Context docBase="C:\Users\jmam0\Desktop\Lab\demoweb\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\jmam0\Desktop\Lab\demoweb\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demoweb" path="/demoweb" reloadable="true" source="org.eclipse.jst.jee.server:demoweb">
 	<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/demoweb" password="oracle" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="demoweb"/>
-</Context><Context docBase="C:\Users\stu30\Desktop\LAB\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\example-web" path="/example-web" reloadable="true" source="org.eclipse.jst.jee.server:example-web"/><Context docBase="C:\Users\stu30\Desktop\LAB\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ajaxweb" path="/ajaxweb" reloadable="true" source="org.eclipse.jst.jee.server:ajaxweb"/></Host>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
