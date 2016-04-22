@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@page import="com.demoweb.servlet.DotDisplay"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -21,6 +22,7 @@
 	
 	dot = document.getElementsByClassName("dot");
 	var timer = null;
+	var movetimer = null;
 	var varindex= [];
 	var varcolor= [];
 	var evolindex= [];
@@ -33,19 +35,24 @@
 	var count=0;
 	
 	
-	function dotMove(event){
-		
+	function dotMove(targetindex, targetcolor){
+			dotClean();
+	
 			if(count < 10 ){
-				moveLeft(varindex);
+				moveLeft(targetindex);
 				count++;				
 			}else if(9 < count && count < 25 ){
-				moveRight(varindex);
+				moveRight(targetindex);
 				count++;
 			}else{
 				count=0;
 			}
 			
-			timer = setTimeout("dotMove()", 500);
+			 dotDisplay(targetindex ,targetcolor); 
+			
+			 movetimer = setTimeout(function(){
+				dotMove(targetindex , targetcolor)
+			}, 500);  
 		
 	}
 	
@@ -103,34 +110,39 @@
 					var kx = parseInt(targetindex[k]%40);
 					var ky = parseInt(targetindex[k]/40);
 					
-					if(kx <8){
-						for(var a=0; a<8; a++){
-							if((8-kx) == a ){
-								targetindex[k] = ky*40+(8+a);
+					if(kx <10){
+						for(var a=0; a<10; a++){
+							if((10-kx) == a ){
+								targetindex[k] = ky*40+(10+a);
 							}
 						}
 						
-					}else if (kx == 8){
-						targetindex[k] = ky*40+(8);
+					}else if (kx == 10){
+						targetindex[k] = ky*40+(10);
 					}else{
 						for(var a=0; a<10; a++){
-							if((kx-8)==a)
+							if((kx-10)==a)
 							{
-								targetindex[k] = ky*40+(8-a);	
+								targetindex[k] = ky*40+(10-a);	
 							}
 						}
 					}
 					
 					
 				}
-				/* break; */
+						
+				
 			}
+					
 		}
-		
-		
-		
-		
+				
 	}
+		
+	
+		
+		
+		
+	
 	
 	function moveRight(targetindex){
 		
@@ -229,6 +241,7 @@
 				
 	}
 	
+	
 	function dotClean(event){
 		
 		for(var i=0; i<dot.length; i++){
@@ -239,7 +252,9 @@
 	
 	
 	var evolCnt=0;
+	var evoltimer=null;
 	function evol(event){
+		doStop(movetimer);
 		
 		if(evolCnt == 0)
 		{
@@ -256,19 +271,21 @@
 		dotClean();
 		dotDisplay(evolindex, evolcolor);
 		
-		timer = setTimeout("evol()", 100);
-		
+		evoltimer = setTimeout("evol()", 100);
 		if(count == 10){
-			doStop();
+			
+			doStop(evoltimer);
 			count =0;
 			evolCnt=0;		
 			
 			dotClean();
 			boomb(boomindex, boomcolor);
-		}
+		}else if(count > 10){ count=0;}
+		
 		
 	}
 	var boomCnt=0;
+	var boombtimer = null
 	function boomb(event){
 			
 			if(boomCnt == 0)
@@ -286,15 +303,16 @@
 			dotClean();
 			dotDisplay(boomindex, boomcolor);
 			
-			timer = setTimeout("boomb()", 100);
+			boombtimer = setTimeout("boomb()", 100);
 			
 			if(count == 10){
-				doStop();
+				doStop(boombtimer);
 				count =0;
-				evolCnt=0;		
+				boomCnt=0;		
 				
 				dotClean();
 				dotDisplay(afterindex, aftercolor);
+				dotMove(afterindex, aftercolor);
 			}
 			
 	}
@@ -344,13 +362,14 @@
 			<% } %>
 			
 			dotDisplay(varindex, varcolor);
+			dotMove(varindex, varcolor);
 			/* dotDisplay(varindex, varcolor); 
 			timer =  window.setTimeout("dotMove()", 500);  */
 
 	}
 	
-	function doStop(event){
-		window.clearTimeout(timer);
+	function doStop(timeout){
+		window.clearTimeout(timeout);
 		
 	}
 	

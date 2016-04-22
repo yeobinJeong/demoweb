@@ -1,8 +1,8 @@
 package com.demoweb.servlet;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,14 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import java.util.*;
 
 import com.demoweb.dao.MemberDao;
 import com.demoweb.dto.Member;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @WebServlet(value = "/member/list.action")
 public class MemberListServlet extends HttpServlet {

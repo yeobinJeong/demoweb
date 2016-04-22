@@ -38,7 +38,7 @@ public class DotInput extends HttpServlet {
 			}
 		}
 
-		FileOutputStream ostream = new FileOutputStream("/c:/dot/test2.txt");
+		FileOutputStream ostream = new FileOutputStream("/c:/dot/evolution.txt");
 		OutputStreamWriter writer = new OutputStreamWriter(ostream);
 		
 		for (int i = 0; i < 40; i++) {

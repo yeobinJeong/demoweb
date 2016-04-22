@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="EUC-KR" />
+	<title>사용자검색</title>
+	<link rel="Stylesheet" href="/ajaxweb/demo/styles/default.css" />
+	<link rel="Stylesheet" href="/ajaxweb/demo/styles/input.css" />
+	
+	<script type="text/javascript">
+	var proxy;
+	function search(){
+		
+		var id = document.getElementById("memberid").value;
+		proxy = new XMLHttpRequest();
+		
+		
+		proxy.open("GET", "/ajaxweb/searchmember.action?id=" + id, true);
+		proxy.onreadystatechange = processResult;
+		proxy.send(null);
+	
+	}
+	
+		function processResult() {
+			if(proxy.readyState == 4) {
+				if (proxy.status == 200) {
+					//
+					var result = proxy.responseText;
+					var member = result.split("$");
+					
+					var id = document.getElementById("memberid");
+					var email = document.getElementById("email");
+					var userType = document.getElementById("usertype");
+					var active = document.getElementById("active");
+					var regDate = document.getElementById("regdate");
+					
+					
+					id.value = member[0];
+					email.value = member[1];
+					userType.value = member[2];
+					active.value = member[3];
+					regDate.value = member[4];
+					
+					
+
+					
+				} else {
+					alert("오류" + proxy.status)
+				}
+			}
+
+		}
+	</script>
+	
+	
+</head>
+<body>
+
+	<div id="pageContainer">
+	
+		<div id="header">
+            <div class="title">
+                <a href="#">DEMO WEBSITE</a>
+            </div>
+            <div class="links">
+            	
+                <a href="#">로그인</a>
+                <a href="#">등록</a>
+                
+            </div>
+        </div>        
+        <div id="menu">
+            <div>
+                <ul>
+                	<!-- a : 페이지 이동을 처리하는 마크업 -->
+                    <li><a href="#">사용자관리</a></li>
+					<li><a href="#">메일보내기</a></li>
+					<li><a href="#">자료실</a></li>
+					<li><a href="#">게시판</a></li>
+                </ul>
+            </div>
+        </div>
+		
+		<div id="inputcontent">
+			<br /><br />
+		    <div id="inputmain">
+		        <div class="inputsubtitle">회원정보검색</div>
+		        
+		        <table>
+		            <tr>
+		                <th>아이디(ID)</th>
+		                <td>
+		                    <input type="text" id="memberid" name="memberid" style="width:230px" />
+		                    &nbsp;[&nbsp;<a href="javascript:search();">검색</a>&nbsp;]
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>비밀번호</th>
+		                <td>
+		                	<input type="text" id="passwd" style="width:280px" readonly="readonly" />
+		                </td>
+		            </tr>		            
+		            <tr>
+		                <th>이메일</th>
+		                <td>
+		                	<input type="text" id="email" style="width:280px" readonly="readonly" />
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>사용자구분</th>
+		                <td>
+		                	<input type="text" id="usertype" style="width:280px" readonly="readonly" />
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>활성화여부</th>
+		                <td>
+		                	<input type="text" id="active" style="width:280px" readonly="readonly" />
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>등록일자</th>
+		                <td>
+		                	<input type="text" id="regdate" style="width:280px" readonly="readonly" />
+		                </td>
+		            </tr>		            		            
+		        </table>
+		        <div class="buttons">
+		        	<input type="reset" value="초기화" style="height:25px" />
+		        </div>
+		    </div>
+		</div>   	
+	
+	</div>
+
+</body>
+</html>

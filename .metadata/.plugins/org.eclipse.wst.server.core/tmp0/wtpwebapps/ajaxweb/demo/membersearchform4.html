@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="EUC-KR" />
+<title>사용자검색</title>
+<link rel="Stylesheet" href="/ajaxweb/demo/styles/default.css" />
+<link rel="Stylesheet" href="/ajaxweb/demo/styles/input.css" />
+
+<script type="text/javascript">
+	var proxy;//XMLH 객체 참조변수	
+	function search() {
+		var id = document.getElementById("memberid").value;
+		
+		proxy = new XMLHttpRequest();
+		proxy.open("GET", "/ajaxweb/searchmember2.action?id=" + id, true);
+		proxy.onreadystatechange = processResult;
+		proxy.send(null);
+
+	}
+	function processResult() {
+		if (proxy.readyState == 4) {//1.요청전, 2.요청후, 3.응답수신시작, 4.응답수신종료
+			if (proxy.status == 200) {//응답코드확인(정상응답)
+				//읽은 데이터를 배분
+				var result = proxy.responseText;
+				//eval : 문자열 데이터를 실행 코드로 변경
+				//       "var a = 10" -> var a = 10;
+				eval('var member = ' + result);//var person = { .... }
+				document.getElementById("memberid").value = member.memberId;
+				document.getElementById("email").value = member.email;
+				document.getElementById("usertype").value = member.userType;
+				document.getElementById("active").value = member.active;
+				document.getElementById("regdate").value = member.regDate;
+			} else {
+				alert('오류 :' + proxy.status);
+			}
+		}
+	}
+	
+	//------------------------------------------------
+	//여기부터 자동 완성 기능 구현
+	
+	
+	document.onclick =function(event){
+		
+		var d=document.getElementById('divAutoCom');
+		if(d){
+			document.body.removeChild(d);//화면에서 제거
+		}
+	}
+	function doAutoComplete() {
+		//사용자가 입력한 아이디 읽기
+		var id = document.getElementById("memberid");
+		if (id.value.length == 0) {
+			var d = document.getElementById('divAutoCom')
+			if (d) {
+				document.body.removeChild(d);//화면에서 제거
+			}
+			return;
+		} 
+		
+		//읽은 아이디가 1문자 이상인 경우에			
+		//XMLHttpRequest 객체를 사용해서 비동기 요청 전송
+		proxy = new XMLHttpRequest();
+		proxy.open("GET", 
+			"/ajaxweb/getsuggestions.action?id=" + id.value, 
+			true);
+		proxy.onreadystatechange = showSuggestions;
+		proxy.send(null);
+		//수신 결과 alert로 출력		
+	}
+	function showSuggestions() {
+		if (proxy.readyState == 4) {
+			if (proxy.status != 200) {
+				alert('error ' + proxy.status);
+				return;
+			}
+			var result = proxy.responseText;
+			//alert(result);
+			showResult(result);
+		}
+	}
+	
+	var divList = null;
+	function showResult(data) {
+		//이미 표시되고 있는 자동완성 박스가 있으면 제거
+		var d = document.getElementById('divAutoCom')
+		if (d) {
+			document.body.removeChild(d);//화면에서 제거
+		}
+		
+		if (data.length == 0) return;
+		var nameArray = data.split(";");
+		
+		//외부 박스 만들기
+		divList	= document.createElement("div");
+		divList.id = "divAutoCom";
+		divList.style.border = "1px	black solid";
+		divList.style.backgroundColor =	"white";
+		divList.style.width	= "230px";
+		divList.style.position = "absolute";//다른 마크업 위에 표시		
+		document.body.appendChild(divList);
+
+		//내부 박스 만들기
+		var	item;
+		for	(var i = 0;	i <	nameArray.length; i++) {
+			item = document.createElement("div");
+			item.style.paddingLeft = "5px";
+			item.style.paddingTop = item.style.paddingBottom = "2px";
+			item.style.width = "97%";
+			item.innerHTML = nameArray[i];//데이터 지정
+			divList.appendChild(item);
+			
+			//마우스 이벤트 등록
+			item.onmousedown = function(oEvent) {
+				oEvent = oEvent	|| window.event;
+				oSrcElement	= oEvent.target	|| oEvent.srcElement;
+				document.getElementById("memberid").value = oSrcElement.innerHTML;
+				divList.style.display =	"none";
+			};	 
+			item.onmouseover = function(oEvent) {	
+				oEvent = oEvent	|| window.event;
+				oSrcElement	= oEvent.target	|| oEvent.srcElement;
+				oSrcElement.style.backgroundColor =	"#efefef"; 
+			};
+			item.onmouseout =	function(oEvent) { 
+				oEvent = oEvent	|| window.event;
+				oSrcElement	= oEvent.target	|| oEvent.srcElement;
+				oSrcElement.style.backgroundColor =	"";	
+			};
+		}
+		
+		//외부 박스의 위치 지정
+		divList.style.left = getLeft() + "px";
+		divList.style.top =	getTop() + "px";
+	}
+  
+	function getTop() {
+		var	t =	document.getElementById("memberid");
+
+		var	topPos = 2 + t.offsetHeight;
+		while(t.tagName.toLowerCase() != "body" && 
+			  t.tagName.toLowerCase() != "html")		
+		{
+			topPos += t.offsetTop;//offsetTop : 상위 요소와의 거리
+			t = t.offsetParent;	//상위 요소를 현재 요소에 대입
+		}
+		return topPos;
+	}
+  
+	function getLeft() {
+		var	t =	document.getElementById("memberid");
+
+		var	leftPos	= 0;
+		while(t.tagName.toLowerCase() != "body" && 
+			  t.tagName.toLowerCase() != "html")
+		{
+			leftPos += t.offsetLeft;//t와 t좌측 요소 사이의 거리
+			t	= t.offsetParent;//t의 좌측 요소
+		}
+		return leftPos;
+	}
+	
+	
+</script>
+
+
+</head>
+<body>
+
+	<div id="pageContainer">
+
+		<div id="header">
+			<div class="title">
+				<a href="#">DEMO WEBSITE</a>
+			</div>
+			<div class="links">
+
+				<a href="#">로그인</a> <a href="#">등록</a>
+
+			</div>
+		</div>
+		<div id="menu">
+			<div>
+				<ul>
+					<!-- a : 페이지 이동을 처리하는 마크업 -->
+					<li><a href="#">사용자관리</a></li>
+					<li><a href="#">메일보내기</a></li>
+					<li><a href="#">자료실</a></li>
+					<li><a href="#">게시판</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="inputcontent">
+			<br />
+			<br />
+			<div id="inputmain">
+				<div class="inputsubtitle">회원정보검색</div>
+
+				<table>
+					<tr>
+						<th>아이디(ID)</th>
+						<td><input type="text" id="memberid" name="memberid"
+							style="width: 230px" onkeyup="doAutoComplete()" /> &nbsp;[&nbsp;<a
+							href="javascript:search();">검색</a>&nbsp;]</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="text" id="passwd" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="text" id="email" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>사용자구분</th>
+						<td><input type="text" id="usertype" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>활성화여부</th>
+						<td><input type="text" id="active" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>등록일자</th>
+						<td><input type="text" id="regdate" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+				</table>
+				<div class="buttons">
+					<input type="reset" value="초기화" style="height: 25px" />
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

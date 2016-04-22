@@ -1,0 +1,70 @@
+package com.ajaxdemoweb.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ajaxdemoweb.model.dao.MemberDao;
+import com.ajaxdemoweb.model.dto.Member;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+@WebServlet("/searchmember2.action")
+public class SearchMember3 extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		response.setContentType("text/plain;charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		
+		//요청 데이터 읽어서 변수에 저장 (없으면 오류 반환)
+		String id = request.getParameter("id");
+		if (id == null || id.length() == 0) {
+			writer.print("error");
+			return;
+		}
+		//요청된 데이터로 검색 (검색 실패하면 오류 반환)
+		MemberDao dao = new MemberDao();
+		Member member = dao.getMemberById(id);
+		if (member == null) {
+			writer.print("error");
+			return;
+		}
+		//검색 결과를 JSON 형태로 반환
+		/*StringBuilder sb = new StringBuilder(256);
+		sb.append("{")
+		  .append(String.format("memberid : '%s',",  member.getMemberId()))
+		  .append(String.format("email : '%s',",  member.getEmail()))
+		  .append(String.format("usertype : '%s',",  member.getUserType()))
+		  .append(String.format("active : %b,",  member.isActive()))
+		  .append(String.format("regdate : '%s'",  member.getRegDate()))
+		  .append("}");
+		
+				  
+		writer.print(sb.toString());*/
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		String json = gson.toJson(member);
+		writer.print(json);
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
+
+
+
+
+
+
+
+
+

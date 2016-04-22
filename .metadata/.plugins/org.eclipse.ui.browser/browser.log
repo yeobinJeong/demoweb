@@ -42,3 +42,28 @@
 
 4월 21, 2016 09:55:45.79 NEW SESSION
 4월 21, 2016 09:55:45.79 [5888:5852:0421/095545:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+
+4월 22, 2016 12:34:58.80 NEW SESSION
+4월 22, 2016 12:34:58.80 [5460:3820:0422/123458:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:35:12.92 [5460:3820:0422/123512:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:35:15.71 [5460:3820:0422/123515:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:35:55.30 [5460:3820:0422/123555:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:36:03.17 [5460:3820:0422/123603:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:37:59.97 [3232:7032:0422/123759:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:38:39.52 [3232:7032:0422/123839:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:40:04.66 [3232:7032:0422/124004:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:41:46.03 [3232:7032:0422/124146:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:41:58.35 [3232:7032:0422/124158:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:42:06.80 [3232:7032:0422/124206:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:42:59.69 [3232:7032:0422/124259:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:43:15.85 [3232:7032:0422/124315:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:43:36.95 [3232:7032:0422/124336:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 12:45:02.25 [3232:7032:0422/124502:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 13:06:54.29 [4204:5804:0422/130654:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 13:09:45.18 [4204:5804:0422/130945:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 13:13:08.93 [4204:5804:0422/131308:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 13:32:58.88 [6564:5928:0422/133258:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 13:35:27.52 [5444:3384:0422/133527:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 13:43:14.51 [3632:5452:0422/134314:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 14:06:53.75 [6284:5560:0422/140653:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)
+4월 22, 2016 14:18:33.34 [6284:5560:0422/141833:ERROR:CONSOLE(72)] "Uncaught TypeError: Cannot read property 'addExtensions' of undefined", source:  (72)

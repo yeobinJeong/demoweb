@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="EUC-KR" />
+<title>사용자검색</title>
+<link rel="Stylesheet" href="/ajaxweb/demo/styles/default.css" />
+<link rel="Stylesheet" href="/ajaxweb/demo/styles/input.css" />
+
+<script type="text/javascript">
+	var proxy;//XMLH 객체 참조변수	
+	function search() {
+		var id = document.getElementById("memberid").value;
+		
+		proxy = new XMLHttpRequest();
+		proxy.open("GET", "/ajaxweb/searchmember2.action?id=" + id, true);
+		proxy.onreadystatechange = processResult;
+		proxy.send(null);
+
+	}
+	function processResult() {
+		if (proxy.readyState == 4) {//1.요청전, 2.요청후, 3.응답수신시작, 4.응답수신종료
+			if (proxy.status == 200) {//응답코드확인(정상응답)
+				//읽은 데이터를 배분
+				
+				var result = proxy.responseText;
+				//eval : 문자열 데이터를 실행 코드로 변경
+				//       "var a = 10" -> var a = 10;
+				if(result == "error"){
+					alert("www");
+				}else{
+					eval('var member = ' + result);//var person = { .... }
+					document.getElementById("memberid").value = member.memberId;
+					document.getElementById("email").value = member.email;
+					document.getElementById("usertype").value = member.userType;
+					document.getElementById("active").value = member.active;
+					document.getElementById("regdate").value = member.regDate;
+				}
+			} else {
+				alert('오류 :' + proxy.status);
+			}
+		}
+
+	}
+	 //-------- 자동완성 기능 구현
+	function doAutoComplete(){
+		// 사용자 아이디 읽기
+		var id = document.getElementById("memberid").value;
+		
+		proxy = new XMLHttpRequest();
+		// 조건 : 읽은 아이디가 1문자 이상인 경우에 
+		if(id.length > 0){						
+			
+			proxy.open("GET", "/ajaxweb/searchmember2.action?key=" + id, true);
+			proxy.onreadystatechange = processAutoComplete;
+			proxy.send(null); 
+		}
+		// XMLHttpRequest객체를 사용해서 비동기 요청 전송
+		
+		// 수신 결과를 alert로 출력 
+		
+		
+	}
+	
+	function processAutoComplete() {
+		
+		if (proxy.readyState == 4) {//1.요청전, 2.요청후, 3.응답수신시작, 4.응답수신종료
+			if (proxy.status == 200) {//응답코드확인(정상응답)
+				//읽은 데이터를 배분
+				
+				
+				var result = proxy.responseText;
+					
+					
+				if(result != "error"){
+				//eval : 문자열 데이터를 실행 코드로 변경
+				//       "var a = 10" -> var a = 10;
+					/* alert(result); */
+					/* alert(result); */
+				
+				 eval('var member = ' + result.split());//var person = { .... }
+				 			 
+				 for(var i=0; i<member.length-1; i++){
+					
+				 		alert();
+					
+				 } 
+				}
+				
+			} else {
+				alert('오류 :' + proxy.status);
+			}
+		}
+	} 
+</script>
+
+
+</head>
+<body>
+
+	<div id="pageContainer">
+
+		<div id="header">
+			<div class="title">
+				<a href="#">DEMO WEBSITE</a>
+			</div>
+			<div class="links">
+
+				<a href="#">로그인</a> <a href="#">등록</a>
+
+			</div>
+		</div>
+		<div id="menu">
+			<div>
+				<ul>
+					<!-- a : 페이지 이동을 처리하는 마크업 -->
+					<li><a href="#">사용자관리</a></li>
+					<li><a href="#">메일보내기</a></li>
+					<li><a href="#">자료실</a></li>
+					<li><a href="#">게시판</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="inputcontent">
+			<br />
+			<br />
+			<div id="inputmain">
+				<div class="inputsubtitle">회원정보검색</div>
+
+				<table>
+					<tr>
+						<th>아이디(ID)</th>
+						<td><input type="text" id="memberid" name="memberid"
+							style="width: 230px" onkeyup="doAutoComplete()" /> &nbsp;[&nbsp;<a
+							href="javascript:search();" >검색</a>&nbsp;]</td>
+							
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="text" id="passwd" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="text" id="email" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>사용자구분</th>
+						<td><input type="text" id="usertype" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>활성화여부</th>
+						<td><input type="text" id="active" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<th>등록일자</th>
+						<td><input type="text" id="regdate" style="width: 280px"
+							readonly="readonly" /></td>
+					</tr>
+				</table>
+				<div class="buttons">
+					<input type="reset" value="초기화" style="height: 25px" />
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

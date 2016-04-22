@@ -126,7 +126,27 @@
 			
 			<tr>	
 				<td class='color' style="background-color: #FFCC00; width: 15px;height: 10px"></td>
-				<td>pooh Yellow</td>
+				<td>Pooh Yellow</td>
+			</tr>
+			<tr>				
+				<td class='color' style="background-color: #FF0000; width: 15px;height: 10px"></td>
+				<td>Vivid red</td>
+			</tr>
+			<tr>				
+				<td class='color' style="background-color: #FF5555; width: 15px;height: 10px"></td>
+				<td>Poket red</td>
+			</tr>
+			<tr>				
+				<td class='color' style="background-color: #FF6600; width: 15px;height: 10px"></td>
+				<td>Orange</td>
+			</tr>
+			<tr>				
+				<td class='color' style="background-color: skyblue; width: 15px;height: 10px"></td>
+				<td>Sky blue</td>
+			</tr>
+			<tr>				
+				<td class='color' style="background-color: blue; width: 15px;height: 10px"></td>
+				<td>Vivid blue</td>
 			</tr>
 			
 				
